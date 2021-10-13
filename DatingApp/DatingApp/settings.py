@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'Accounts',
+    'knox',
     'core',
     'corsheaders',
 ]
@@ -128,4 +130,13 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-DEFAULT_PERMISSION_CLASSES: ['rest_framework.permissions.AllowAny']
+#DEFAULT_PERMISSION_CLASSES: ['rest_framework.permissions.AllowAny']
+REST_FRAMEWORK = {
+    # 'DEFAULT_PERMISSION_CLASSES': [  # remove
+    #     'rest_framework.permissions.AllowAny'
+    # ],
+    'DEFAULT_AUTHENTICATION_CLASSES': (  # added
+        'knox.auth.TokenAuthentication',
+    ),
+    'DATETIME_FORMAT': "%m/%d/%Y %H:%M:%S",
+}
