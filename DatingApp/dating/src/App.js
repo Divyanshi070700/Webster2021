@@ -1,11 +1,11 @@
-import Dashboard from "./components/Dashboard";
+
 import Navbar from "./components/Navbar";
 import HomePage from "./components/HomePage";
 import Footer from './components/Footer';
 import React, { Component } from "react";
 import { BrowserRouter,Route,Switch,Link } from "react-router-dom";
 import { connect } from "react-redux";
-import RegisterForm from "./components/AccoutAuth/RegisterForm";
+
 import 'reactjs-popup/dist/index.css';
 import './App.css';
 //Bootstrap and jQuery libraries
@@ -357,7 +357,7 @@ class App extends React.Component {
 		<Switch>
 			<Route exact path="/" component={HomePage}/>
 			<Route path="/nav" component={Navbar}/>
-			<Route path="/register" component={RegisterForm}/>
+			
 			
 		</Switch>
 		</BrowserRouter>
@@ -371,4 +371,4 @@ class App extends React.Component {
 	);
   }
   }
-  export default (connect)(App);
+  export default connect()(App);

@@ -149,7 +149,7 @@ import React from "react";
 		import { Menu, Icon, Button } from 'antd';
 
 const { SubMenu } = Menu;
- import React from "react";
+ 
  import axios from "axios";
 
 
