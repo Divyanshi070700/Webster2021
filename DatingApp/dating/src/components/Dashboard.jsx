@@ -1,7 +1,6 @@
 
  import React from "react";
  import axios from "axios";
- import { Component } from "react";
 
 
 class Dashboard extends React.Component {
