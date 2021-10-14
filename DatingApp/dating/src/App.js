@@ -12,6 +12,7 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 //import '~antd/dist/antd.css';
 import { useState } from 'react';
+import * as actions from './store/actions/auth';
 // form and modal modules
 import {
   Form,
@@ -32,6 +33,10 @@ import { QuestionCircleOutlined } from '@ant-design/icons';
 
 class App extends React.Component {
   
+	componentDidMount(){
+		this.props.onTryAutoSignup();
+	}
+
 	render(){
 	  // Create Account! Form
 	  const { Option } = Select;
@@ -371,4 +376,14 @@ class App extends React.Component {
 	);
   }
   }
-  export default connect()(App);
+const mapStateToProps= state =>{
+	return{
+		isAuthenticated: state.token !== null
+	}
+}
+const mapDispatchToProps = dispatch => {
+	return {
+		onTryAutoSignup: () => dispatch(actions.authCheckState())
+	}
+}
+  export default connect(mapStateToProps,mapDispatchToProps)(App);
