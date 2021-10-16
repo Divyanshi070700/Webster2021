@@ -21,5 +21,8 @@ from core.views import *
 urlpatterns = [
 	path('admin/', admin.site.urls),
 	path('wel/', ReactView.as_view(), name="something"),
-     path('auth/', include('Accounts.urls')),
+     #path('auth/', include('Accounts.urls')),
+     #url(r'^rest-auth/', include('rest_auth.urls'))
+    url(r'^rest-auth/', include('rest_auth.urls')),
+    url(r'^rest-auth/registration/', include('rest_auth.registration.urls'))
 ]

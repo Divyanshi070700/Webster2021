@@ -37,13 +37,22 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework',
-    'Accounts',
-    'knox',
+    #'knox',
     'core',
     'corsheaders',
+    'django.contrib.sites',
+    'rest_framework',
+    'rest_framework.authtoken',
+    'allauth',
+    'allauth.account',
+    'rest_auth.registration',
+    'rest_auth',
+    
+    
+    
+    
 ]
-
+SITE_ID = 1
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -120,7 +129,9 @@ USE_L10N = True
 USE_TZ = True
 
 CORS_ORIGIN_ALLOW_ALL = True
-
+ACCOUNT_EMAIL_VERIFICATION='none'
+ACCOUNT_EMAIL_REQUIRED=False
+ACCOUNT_AUTHENTICATION_METHOD='username'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
@@ -132,11 +143,7 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #DEFAULT_PERMISSION_CLASSES: ['rest_framework.permissions.AllowAny']
 REST_FRAMEWORK = {
-    # 'DEFAULT_PERMISSION_CLASSES': [  # remove
-    #     'rest_framework.permissions.AllowAny'
-    # ],
-    'DEFAULT_AUTHENTICATION_CLASSES': (  # added
-        'knox.auth.TokenAuthentication',
-    ),
-    'DATETIME_FORMAT': "%m/%d/%Y %H:%M:%S",
-}
+    'DEFAULT_PERMISSION_CLASSES': [  # remove
+        'rest_framework.permissions.AllowAny'
+    ],
+    }
