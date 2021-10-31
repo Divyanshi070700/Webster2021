@@ -145,14 +145,19 @@ import React from "react";
 //import { faHome, faPlus, faCog, faCheck, faSearch, faSlidersH } from '@fortawesome/free-solid-svg-icons';
     
 
-		
-		import { Menu, Icon, Button } from 'antd';
+
+
+
+
+// original 
+
+import MyNavDash from "./NavbarDashboard";	
+import { Menu,Button } from 'antd';
+import Icon from '@ant-design/icons';
+import background from 'E:/Webster/Webster2021/DatingApp/dating/src/background.jpg';
+import axios from "axios";
 
 const { SubMenu } = Menu;
- 
- import axios from "axios";
-
-
 class Dashboard extends React.Component {
   state = {
     collapsed: false,
@@ -166,8 +171,11 @@ class Dashboard extends React.Component {
 
   render() {
     return (
-      <div style={{ width: 256 }}>
-        <Button type="primary" onClick={this.toggleCollapsed} style={{ marginBottom: 16 }}>
+      <div style={{ backgroundImage: `url(${background})` ,height: '400%' } }>
+      <div >
+        <MyNavDash/>
+        <div style={{ width: 256 }}>
+        <Button type="primary" onClick={this.toggleCollapsed} style={{ marginBottom: 0 }}>
           <Icon type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'} />
         </Button>
         <Menu
@@ -220,13 +228,13 @@ class Dashboard extends React.Component {
             </SubMenu>
           </SubMenu>
         </Menu>
+        </div>
+      </div>
       </div>
     );
   }
 }
 
 
-
-
-
 export default Dashboard;
+

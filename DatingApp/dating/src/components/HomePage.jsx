@@ -35,6 +35,7 @@ render(){
         </SignUp>
         <Login>
             </Login>
+            <Footer/>
             </div>
     } 
     

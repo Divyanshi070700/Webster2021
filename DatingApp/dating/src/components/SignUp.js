@@ -1,6 +1,6 @@
 import Navbar from "../components/Navbar";
 import HomePage from "../components/HomePage";
-import Footer from '../components/Footer';
+import Footer from './Footer';
 import React, { Component } from "react";
 import { BrowserRouter, Route, Switch, Link } from "react-router-dom";
 import { connect } from "react-redux";
@@ -328,11 +328,13 @@ class SignUp extends React.Component {
             };
             
             return (
-                <div>
+                <div style={{ display: 'flex', justifyContent: 'center' , margin: '10px'  }} >
                     
                     <Button
                         htmlType="submit"
                         type="primary"
+                        variant="primary"
+                        size="lg"
                         onClick={() => {
                             
                             setVisible(true);

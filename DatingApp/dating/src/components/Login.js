@@ -132,13 +132,12 @@ const CollectionsPage = () => {
     };
     
     return (
-        <div>
+        <div style={{ display: 'flex', justifyContent: 'center' , margin: '10px' }} >
             
-            <Button
+            <Button variant="contained" style={{float: 'center'}} color="primary" 
                 htmlType="submit"
                 type="primary"
                 onClick={() => {
-                    
                     setVisible(true);
                 }}
             >
@@ -150,9 +149,7 @@ const CollectionsPage = () => {
                 onCancel={() => {
                     setVisible(false);
                 }}
-            />
-
-            
+            /> 
         </div>
 
     );

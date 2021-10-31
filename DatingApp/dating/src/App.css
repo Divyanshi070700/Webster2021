@@ -1,7 +1,9 @@
 .App {
   text-align: center;
 }
-
+/* *{
+  background-color: #FFF5FD;
+} */
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -26,6 +28,7 @@
 
 .App-link {
   color: #61dafb;
+  /* color: brown; */
 }
 
 @keyframes App-logo-spin {

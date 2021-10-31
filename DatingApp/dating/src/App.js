@@ -1,6 +1,8 @@
 
 import Navbar from "./components/Navbar";
 import HomePage from "./components/HomePage";
+import Dashboard from "./components/Dashboard";
+import DashHome from "./components/DashHome";
 import Footer from './components/Footer';
 import React, { Component } from "react";
 import { BrowserRouter,Route,Switch,Link } from "react-router-dom";
@@ -31,11 +33,14 @@ class App extends React.Component {
 					
 				</Route>
 			<Route path="/nav" component={Navbar}/>
-
+			<Route path="/dashboard" component={Dashboard}/>
+			<Route path="/dashhome" component={DashHome}/>
+			<Route path="/footer" component={Footer}/>
 			
 			
 		</Switch>
 		</BrowserRouter>
+		{/* <Footer/> */}
 	  	</>
 	);
   }
