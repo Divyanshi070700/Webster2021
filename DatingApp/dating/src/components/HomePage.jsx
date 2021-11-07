@@ -8,13 +8,15 @@ import Login from "./Login";
 import * as actions from '../store/actions/auth';
 import { connect } from "react-redux";
 import Footer from "./Footer";
+import "./HomePage.css";
 class HomePage extends React.Component {
 render(){
     return (
         <>
         <div>
         <MyNavbar/>
-        <Card className="text-center" style={{ display:'flex', justifyContent:'center'}}>
+        <img className="homeimg" src={bg} />
+        {/* '<Card className="text-center" style={{ display:'flex', justifyContent:'center'}}>
     <Card.Img variant="top" src={bg} />
     <Card.Body>
     <Card.Title>Start Something Epic!</Card.Title>
@@ -22,7 +24,8 @@ render(){
         Our site Tag line here!!
     </Card.Text>
     </Card.Body>
-    </Card>
+    </Card>' */}
+    <h2>Start Something Epic!</h2>
     </div>
     {
         this.props.isAuthenticated ?

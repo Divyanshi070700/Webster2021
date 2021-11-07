@@ -65,7 +65,7 @@ render(){
           ]
       }
    ];
-   return <SimpleReactFooter 
+   return <SimpleReactFooter className="Footer" 
     
       description={description} 
       title={title}
