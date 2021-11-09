@@ -1,17 +1,54 @@
 import * as actionTypes from './actionTypes';
 import axios from 'axios';
 export const authStart=()=>{
+    
     return{
+
         type:actionTypes.AUTH_START
     }
 }
 export const authSuccess=token=>{
+    
     return{
         type:actionTypes.AUTH_SUCCESS,
         token:token
     }
+    
 }
-
+export const getDd=token=>
+{
+    return dispatch=>{
+        
+        axios.defaults.headers = {
+            "Content-Type": "application/json",
+            Authorization: "Token "+token
+          }
+          axios.get('http://127.0.0.1:8000/details/user/')
+            .then(res => {
+               localStorage.setItem('detailsOfUser',res.data);
+              console.log(res.data);
+              //localStorage.setItem('userId',res.data.pk);
+            })
+            
+        }
+    }
+    export const getthings=token=>
+    {
+        return dispatch=>{
+            
+            axios.defaults.headers = {
+                "Content-Type": "application/json",
+                Authorization: "Token "+token
+              }
+              axios.get('http://127.0.0.1:8000/rest-auth/user/')
+                .then(res => {
+                  console.log(res.data);
+                  localStorage.setItem('userId',res.data.pk);
+                })
+                
+            }
+        }
+    
 export const authFail=error=>{
     return{
         type:actionTypes.AUTH_FAIL,
@@ -22,6 +59,7 @@ export const logout=()=>
 {
     localStorage.removeItem('user');
     localStorage.removeItem('expirationDate');
+    localStorage.removeItem('token');
     console.log("hey");
     
     return{
@@ -50,9 +88,13 @@ export const authLogin=(username, password)=>{
         const token=res.data.key;
         const expirationDate= new Date(new Date().getTime()+3600*1000);
         localStorage.setItem('token',token);
+        localStorage.setItem('userId',res.data.pk);
         localStorage.setItem('expirationDate',expirationDate);
         console.log(token);
+        console.log(res.data.pk);
         dispatch(authSuccess(token));
+        dispatch(getthings(token));
+        dispatch(getDd(token));
         dispatch(checkAuthTimeout(3600))
     })
     .catch(err=>{
@@ -81,6 +123,45 @@ export const authSignup=(username,email, password1,password2)=>{
     .catch(err=>{
         dispatch(authFail(err))
     })
+    }
+}
+export const authGet=(firstName,lastName,gender,dob,occupation,bio)=>{
+    navigator.geolocation.getCurrentPosition(function (position) {
+        const lat=position.coords.latitude.toFixed(4);
+        const lng=position.coords.longitude.toFixed(4);
+        localStorage.setItem('lat',lat);
+        localStorage.setItem('lng',lng);
+       console.log("Latitude is :", lat);
+       console.log("Longitude is :", lng);
+     });
+    return dispatch=>{
+        axios.defaults.headers = {
+            "Content-type": "multipart/form-data",
+            //'Accept': 'application/json',
+            Authorization: "Token "+localStorage.getItem('token'),
+         }
+        axios.post('http://127.0.0.1:8000/details/user/',
+        {   
+            firstName:firstName,
+            lastName:lastName,
+            gender:gender,
+            dob:dob,
+            occupation:occupation,
+            bio:bio,
+            latitude:localStorage.getItem('lat'),
+            longitude:localStorage.getItem('lng'),
+            
+
+          
+        }).then(res=>{
+            console.log("Details done!!");
+            localStorage.removeItem('lat');
+            localStorage.removeItem('lng');
+            localStorage.removeItem('userId');
+        })
+        .catch(err=>{
+          console.log(err);
+        })
     }
 }
 export const authCheckState=()=>{

@@ -8,8 +8,11 @@ import Login from "./Login";
 import * as actions from '../store/actions/auth';
 import { connect } from "react-redux";
 import Footer from "./Footer";
+
 class HomePage extends React.Component {
+    
 render(){
+   // const location=GetDetails();
     return (
         <>
         <div>
@@ -23,6 +26,9 @@ render(){
     </Card.Text>
     </Card.Body>
     </Card>
+<show/>
+<div>
+    </div>
     </div>
     {
         this.props.isAuthenticated ?

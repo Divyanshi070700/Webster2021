@@ -11,6 +11,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import * as actions from './store/actions/auth';
 // form and modal modules
 import "antd/dist/antd.css";
+import FetchDetails from "./components/FetchDetails";
 class App extends React.Component {
   
 	componentDidMount(){
@@ -28,9 +29,10 @@ class App extends React.Component {
 				<HomePage {...this.props}>
 					
 					</HomePage>
-					
+				
+
 				</Route>
-			<Route path="/nav" component={Navbar}/>
+			<Route path="/nav" component={FetchDetails}/>
 
 			
 			

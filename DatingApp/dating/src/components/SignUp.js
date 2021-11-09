@@ -32,43 +32,9 @@ import { QuestionCircleOutlined } from '@ant-design/icons';
 
 class SignUp extends React.Component {
     render() {
-        
+
         const { Option } = Select;
-        //const AutoCompleteOption = AutoComplete.Option;
-        // const residences = [
-        //     {
-        //         value: 'zhejiang',
-        //         label: 'Zhejiang',
-        //         children: [
-        //             {
-        //                 value: 'hangzhou',
-        //                 label: 'Hangzhou',
-        //                 children: [
-        //                     {
-        //                         value: 'xihu',
-        //                         label: 'West Lake',
-        //                     },
-        //                 ],
-        //             },
-        //         ],
-        //     },
-        //     {
-        //         value: 'jiangsu',
-        //         label: 'Jiangsu',
-        //         children: [
-        //             {
-        //                 value: 'nanjing',
-        //                 label: 'Nanjing',
-        //                 children: [
-        //                     {
-        //                         value: 'zhonghuamen',
-        //                         label: 'Zhong Hua Men',
-        //                     },
-        //                 ],
-        //             },
-        //         ],
-        //     },
-        // ];
+
         const formItemLayout = {
             labelCol: {
                 xs: {
@@ -155,7 +121,7 @@ class SignUp extends React.Component {
                         form={form}
                         name="Create Account!"
                         onFinish={onFinish}
-                        
+
                         initialValues={{
                             //residence: ['MNNIT', 'Allahbad', 'India'],
                             prefix: '91',
@@ -263,7 +229,7 @@ class SignUp extends React.Component {
                                 }}
                             />
                         </Form.Item>
-                        
+
                         {/* <Form.Item label="Captcha" extra="We must make sure that your are a human.">
                             <Row gutter={8}>
                                 <Col span={12}>
@@ -319,22 +285,22 @@ class SignUp extends React.Component {
                     values.email,
                     values.password1,
                     values.password2
-    
-    
-    
+
+
+
                 );
-                
+
                 setVisible(false);
             };
-            
+
             return (
                 <div>
-                    
+
                     <Button
                         htmlType="submit"
                         type="primary"
                         onClick={() => {
-                            
+
                             setVisible(true);
                         }}
                     >
@@ -348,31 +314,31 @@ class SignUp extends React.Component {
                         }}
                     />
 
-                    
+
                 </div>
 
             );
         };
         return (
             <>
-            
-              <CollectionsPage />
-               </>
-          );
+
+                <CollectionsPage />
+            </>
+        );
     }
 }
 
 
-const mapStateToProps= state =>{
-	return{
-		//loading: this.state.loading,
+const mapStateToProps = state => {
+    return {
+        //loading: this.state.loading,
         //error: this.state.error
-	}
+    }
 }
 const mapDispatchToProps = dispatch => {
-	return {
-		onAuth: (username, email, password1, password2) => dispatch(actions.authSignup(username,email,password1,password2))
-	}
+    return {
+        onAuth: (username, email, password1, password2) => dispatch(actions.authSignup(username, email, password1, password2))
+    }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(SignUp)
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp)
