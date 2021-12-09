@@ -1,0 +1,15 @@
+body{
+    /* background: black; */
+    background-image: url("E:\Webster\Webster2021\DatingApp\dating\src\formbac.jpg");
+    background-size:cover;
+    /* background-repeat: no-repeat; */
+    text-align: center;
+}
+/* .homeimg {
+    max-width: 100%;
+    height: auto;
+  } */
+  .formdetails{
+      padding: 50px;
+      align-items: center;
+  }

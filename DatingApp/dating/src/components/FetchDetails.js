@@ -13,6 +13,7 @@ import {
   Modal,
   
 } from 'antd';
+import { Col} from "react-bootstrap";
 import { connect } from 'react-redux';
 import { Upload } from 'antd';
 import ImgCrop from 'antd-img-crop';
@@ -21,7 +22,7 @@ import { useEffect } from 'react';
 import MyNavbar from './Navbar';
 import axios from 'axios';
 import * as actions from '../store/actions/auth'
-
+import "./FetchDetails.css";
 
 class FetchDetails extends React.Component {
   
@@ -140,18 +141,23 @@ class FetchDetails extends React.Component {
             <Radio.Button value="large">Large</Radio.Button>
           </Radio.Group>
         </Form.Item> */}
+        <div className="formdetails">
+        <Col>
         <Form.Item label="First Name" name="firstName" rules={[
           {required: true,
           message: 'This is required!'},
         ]}>
           <Input />
         </Form.Item>
+      </Col>
+        <Col>
         <Form.Item label="Last Name" name="lastName" rules={[
           {required: true,
           message: 'This is required!'}
         ]}>
           <Input />
         </Form.Item>
+        </Col>
         <Form.Item label="Gender" name="gender" rules={[
           {required: true,
           message: 'This is required!'}
@@ -218,7 +224,7 @@ class FetchDetails extends React.Component {
     <Form.Item label="">
           <Button type="primary" htmlType="submit">I am ok with my details! Let's begin.</Button>
         </Form.Item>
-
+        </div>
       </Form>
       
     </>
