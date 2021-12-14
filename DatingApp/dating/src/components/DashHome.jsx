@@ -1,6 +1,7 @@
-import React from 'react'
+import React from 'react';
+// import background from './background.jpg';
 import Dashboard from './Dashboard';
-import './DashHome.css';
+import '../styles/DashHome.css';
 // export default function DashHome() {
 //     return (
 //         <div className="app" style={{ backgroundImage: `url(${background})` ,height: '400%' } }>

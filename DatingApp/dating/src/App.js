@@ -3,8 +3,10 @@ import HomePage from "./components/HomePage";
 import Dashboard from "./components/Dashboard";
 import DashHome from "./components/DashHome";
 import Footer from './components/Footer';
+import Faq from './components/faq';
 // import Deck from "./components/Deck";
 import Swipe from "./components/Swipe";
+import Contactus from "./components/Contactus";
 // import Card from "./components/Card";
 import React, { Component } from "react";
 import { BrowserRouter, Route, Switch, Link } from "react-router-dom";
@@ -42,6 +44,8 @@ class App extends React.Component {
                         <Route path="/dashboard" component={Dashboard} />
 						<Route path="/footer" component={Footer} />
 						<Route path="/Swipe" component={Swipe} />
+						<Route path="/faq" component={Faq} />
+						<Route path="/Contactus" component={Contactus} />
 						{/* <Route path="/Card" component={Card} />  */}
                          <Route path="/setPref" component={Preference}/>
 					</Switch>

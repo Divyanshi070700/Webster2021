@@ -1,0 +1,19 @@
+.contactus{
+    display: 'inline-block';
+    width: 'calc(50% )'; 
+    margin: '15px auto' ; 
+    /* textAlign: 'center'; */
+}
+.form-label{
+    font-size: 200px;
+}
+/* ::placeholder{
+    text-align: center;
+} */
+
+.mb-3{
+    display: 'inline-block'; 
+    width: 'calc(50% )';
+    margin: '10px auto';
+    text-align: 'center';
+}

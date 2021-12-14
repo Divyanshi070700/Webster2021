@@ -6,7 +6,8 @@ import { useGesture } from "react-with-gesture";
 import Card from "./Card";
 // import { Component } from 'react';
 import "../styles/Deck.css";
-import axios from "axios";
+// import MyNavSwipe from "./NavbarSwipe";
+import MyNavDash from './Navbar';
 
 import { useEffect } from "react";
 

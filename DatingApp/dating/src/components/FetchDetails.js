@@ -1,18 +1,7 @@
 import React, { useState } from 'react';
-import {
-  Form,
-  Input,
-  Button,
-  Radio,
-  Select,
-  Cascader,
-  DatePicker,
-  InputNumber,
-  TreeSelect,
-  Switch,
-  Modal,
-  
-} from 'antd';
+import { Form,Input,Button,Radio,Select,Cascader,DatePicker,InputNumber,TreeSelect,Switch,Modal, } from 'antd';
+import {Row, Col } from "react-bootstrap";
+// import { Col} from "react-bootstrap";
 import { connect } from 'react-redux';
 import { Upload } from 'antd';
 import ImgCrop from 'antd-img-crop';
@@ -21,7 +10,7 @@ import { useEffect } from 'react';
 import MyNavbar from './Navbar';
 import axios from 'axios';
 import * as actions from '../store/actions/auth'
-
+import "../styles/FetchDetails.css";
 
 class FetchDetails extends React.Component {
   
@@ -136,23 +125,27 @@ class FetchDetails extends React.Component {
             <Radio.Button value="large">Large</Radio.Button>
           </Radio.Group>
         </Form.Item> */}
+        <div className="formdetails">
+        <div class="sub-entry">
         <Form.Item label="First Name" name="firstName" rules={[
           {required: true,
           message: 'This is required!'},
         ]}>
-          <Input />
+          <Input style={{ display: 'inline-block', width: 'calc(50% - 8px)', margin: '0 8px' }}/>
         </Form.Item>
+        
         <Form.Item label="Last Name" name="lastName" rules={[
           {required: true,
           message: 'This is required!'}
         ]}>
-          <Input />
+          <Input style={{ display: 'inline-block', width: 'calc(50% - 8px)', margin: '0 8px' }}/>
         </Form.Item>
+       
         <Form.Item label="Gender" name="gender" rules={[
           {required: true,
           message: 'This is required!'}
         ]}>
-          <Select>
+          <Select style={{ display: 'inline-block', width: 'calc(50% - 8px)', margin: '0 8px' }}>
             <Select.Option value="male">male</Select.Option>
             <Select.Option value="female">female</Select.Option>
             <Select.Option value="other">other</Select.Option>
@@ -162,18 +155,18 @@ class FetchDetails extends React.Component {
           {required: true,
           message: 'This is required!'}
         ]}>
-          <Select>
+          <Select style={{ display: 'inline-block', width: 'calc(50% - 8px)', margin: '0 8px' }}>
             <Select.Option value="male">male</Select.Option>
             <Select.Option value="female">female</Select.Option>
             <Select.Option value="other">other</Select.Option>
           </Select>
           </Form.Item>
         
-        <Form.Item label="Date of Birth" name="dob" rules={[
+        <Form.Item  label="Date of Birth" name="dob" rules={[
           {required: true,
           message: 'This is required!'}
         ]}>
-          <DatePicker format="YYYY-MM-DD"/>
+          <DatePicker style={{width: 'calc(50% - 8px)'}} format="YYYY-MM-DD"/>
         </Form.Item>
         {/* <Form.Item label="InputNumber">
           <InputNumber />
@@ -185,36 +178,42 @@ class FetchDetails extends React.Component {
           {required: true,
           message: 'This is required!'}
         ]}>
-          <Input/>
+          <Input style={{ display: 'inline-block', width: 'calc(50% - 8px)', margin: '0 8px' }}/>
         </Form.Item>
         <Form.Item label="Bio" name="bio" rules={[
           {required: true,
           message: 'This is required!'}
         ]}>
-          <Input/>
+          <Input style={{ display: 'inline-block', width: 'calc(50% - 8px)', margin: '0 8px' }}/>
         </Form.Item>
-         <Form.Item name="myImage" >
+
+        <Form.Item label="">
+          <Button type="primary" htmlType="submit">I am ok with my details! Let's begin.</Button>
+        </Form.Item>
+
+        </div>
+        
+      <Form.Item style={{display: 'flex'}} name="myImage" >
                 <ImgCrop rotate>
-      <Upload
+      <Upload 
         //action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
         listType="picture-card"
         //showUploadList={false}
          fileList={fileList}
         onChange={onChange}
         onPreview={onPreview}
-        
-        
       >
          {/* {fileList.length === 1 ? null : uploadButton } */}
+      
         {fileList.length === 1 ?null :'+upload'}
-        
+      
       </Upload>
     </ImgCrop>
      </Form.Item> 
-    <Form.Item label="">
-          <Button type="primary" htmlType="submit">I am ok with my details! Let's begin.</Button>
-        </Form.Item>
-
+     
+    
+        </div>
+        
       </Form>
       
     </>

@@ -1,14 +1,14 @@
 import MyNavbar from "./Navbar";
 import React from 'react'
 import {Button,Card} from "react-bootstrap";
-import bg from './bg.jpg';
+import bg from '../images/bg.jpg';
 import SignUp from "./SignUp";
 import Login from "./Login";
 //import Button from "@restart/ui/esm/Button";
 import * as actions from '../store/actions/auth';
 import { connect } from "react-redux";
 import Footer from "./Footer";
-import "./HomePage.css";
+import "../styles/HomePage.css";
 class HomePage extends React.Component {
     
 render(){

@@ -1,0 +1,31 @@
+body{
+    /* background: black; */
+    /* background-image: url("back.png"); */
+    background: linear-gradient(rgba(255,255,255,.2), rgba(255,255,255,.20)), url("../images/back.png");
+    background-size:cover;
+    /* background-repeat: no-repeat; */
+    text-align: center;
+}
+/* .homeimg {
+    max-width: 100%;
+    height: auto;
+  } */
+  .formdetails{
+      padding: 40px;
+      align-items: center;
+  }
+
+ .ant-form-item-label label{
+    font-size: 16px;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+ }
+ .sub-entry {
+    width: 90%;
+    float: left;
+    margin-right: 0;
+}
+.sub-entry2 {
+    float: right;
+    margin-right: 30%;
+    height: 20px;
+}
