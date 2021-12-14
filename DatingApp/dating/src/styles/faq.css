@@ -1,0 +1,11 @@
+.faqchange{
+    /* margin: 15px; */
+    width: 60%;
+    /* display: flex; */
+    /* position: relative; */
+    /* align-items: center; */
+    margin: auto;
+    margin-top: .5%;
+    border-radius: 20px;
+    border-color: rgba(0, 0, 0, 0.288);
+}

@@ -2,7 +2,8 @@ import React from "react";
 import { animated} from "react-spring";
 import { to } from "react-spring";
 import Carousel from "nuka-carousel";
-import MyNavSwipe from "./NavbarSwipe";
+// import MyNavSwipe from "./NavbarSwipe";
+import MyNavSwipe from './Navbar';
 class Card extends React.Component {
   render() {
     const { i, x, y, rot, scale, trans, cards, bind, objs } = this.props;
