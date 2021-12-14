@@ -15,39 +15,6 @@ export const authSuccess=token=>{
     }
     
 }
-export const getDd=token=>
-{
-    return dispatch=>{
-        
-        axios.defaults.headers = {
-            "Content-Type": "application/json",
-            Authorization: "Token "+token
-          }
-          axios.get('http://127.0.0.1:8000/details/user/')
-            .then(res => {
-               localStorage.setItem('detailsOfUser',res.data);
-              console.log(res.data);
-              //localStorage.setItem('userId',res.data.pk);
-            })
-            
-        }
-    }
-    export const getthings=token=>
-    {
-        return dispatch=>{
-            
-            axios.defaults.headers = {
-                "Content-Type": "application/json",
-                Authorization: "Token "+token
-              }
-              axios.get('http://127.0.0.1:8000/rest-auth/user/')
-                .then(res => {
-                  console.log(res.data);
-                  localStorage.setItem('userId',res.data.pk);
-                })
-                
-            }
-        }
     
 export const authFail=error=>{
     return{
@@ -88,17 +55,39 @@ export const authLogin=(username, password)=>{
         const token=res.data.key;
         const expirationDate= new Date(new Date().getTime()+3600*1000);
         localStorage.setItem('token',token);
-        localStorage.setItem('userId',res.data.pk);
+        //localStorage.setItem('userId',res.data.pk);
         localStorage.setItem('expirationDate',expirationDate);
-        console.log(token);
-        console.log(res.data.pk);
+        console.log('token:'+token);
+        //console.log(res.data.pk);
         dispatch(authSuccess(token));
-        dispatch(getthings(token));
-        dispatch(getDd(token));
         dispatch(checkAuthTimeout(3600))
+        let data;
+        let len;
+        axios.defaults.headers = {
+          "Content-Type": "application/json",
+          Authorization: "Token "+localStorage.getItem('token')
+        }
+        axios.get('http://127.0.0.1:8000/details/user/')
+          .then(res => {
+            //localStorage.setItem('detailsOfUser',res.data);
+             data=res.data
+             len=res.data.length;
+            //console.log(res.data);
+            //localStorage.setItem('userId',res.data.pk);
+            if(len==0)
+            localStorage.setItem('DetailsFetched',true)
+            else
+            localStorage.setItem('DetailsFetched',false)
+          })
+          .catch(err=>{
+            
+            alert("Detail not fetched! "+ err);
+           })
+          
     })
     .catch(err=>{
         dispatch(authFail(err))
+        alert("Login unsuccessful! ");
     })
     }
 }
@@ -115,12 +104,13 @@ export const authSignup=(username,email, password1,password2)=>{
     .then(res => {
         const token=res.data.key;
         const expirationDate= new Date(new Date().getTime()+3600*1000);
-        localStorage.setItem('token',token);
-        localStorage.setItem('expirationDate',expirationDate);
+        //localStorage.setItem('token',token);
+       // localStorage.setItem('expirationDate',expirationDate);
         dispatch(authSuccess(token));
         dispatch(checkAuthTimeout(3600))
     })
     .catch(err=>{
+        alert("Registration unsuccessful! Check your password ");
         dispatch(authFail(err))
     })
     }

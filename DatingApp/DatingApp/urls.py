@@ -1,3 +1,4 @@
+
 from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls import url
@@ -12,6 +13,7 @@ urlpatterns = [
      #url(r'^rest-auth/', include('rest_auth.urls'))
     url(r'^rest-auth/', include('rest_auth.urls')),
     url(r'^rest-auth/registration/', include('rest_auth.registration.urls')),
-    url('details/user/',DetailView.as_view(),name="hello")
+    url('details/user/',DetailView.as_view(),name="hello"),
+    url('setPref/', SetPrefView.as_view(),name="Pref"),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

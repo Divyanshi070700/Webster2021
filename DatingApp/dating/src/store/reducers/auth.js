@@ -1,5 +1,5 @@
 import * as actionTypes from "../actions/actionTypes";
-import {updatedObject } from 'E:/Webster/Webster2021/DatingApp/dating/src/store/utility.js';
+import {updatedObject} from "../utility.js";
 
 const initialState={
     token: null,

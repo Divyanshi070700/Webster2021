@@ -7,3 +7,8 @@ class DetailSerializer(serializers.ModelSerializer):
     class Meta:
         model= Details
         fields = ('__all__')
+
+class PrefSerializer(serializers.ModelSerializer):
+    class Meta:
+        model= setPreference
+        fields = ('__all__')        

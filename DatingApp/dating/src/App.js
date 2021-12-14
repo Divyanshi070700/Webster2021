@@ -16,6 +16,7 @@ import * as actions from './store/actions/auth';
 // form and modal modules
 import "antd/dist/antd.css";
 import FetchDetails from "./components/FetchDetails";
+import Preference from "./components/preference";
 class App extends React.Component {
 
 	componentDidMount() {
@@ -37,17 +38,12 @@ class App extends React.Component {
 				
 
 				</Route>
-			<Route path="/nav" component={FetchDetails}/>
-
-	
-						
-						
-						<Route path="/dashboard" component={Dashboard} />
-						<Route path="/dashhome" component={DashHome} />
+			            <Route path="/fillDetails" component={FetchDetails}/>
+                        <Route path="/dashboard" component={Dashboard} />
 						<Route path="/footer" component={Footer} />
 						<Route path="/Swipe" component={Swipe} />
 						{/* <Route path="/Card" component={Card} />  */}
-
+                         <Route path="/setPref" component={Preference}/>
 					</Switch>
 				</BrowserRouter>
 				{/* <Footer/> */}

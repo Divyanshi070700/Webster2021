@@ -18,4 +18,9 @@ class Details(models.Model):
     longitude= models.DecimalField(max_digits=12, decimal_places=9)
     profileImg= models.ImageField(blank=True, null=True,upload_to=upload_to)
 	
-	
+class setPreference(models.Model):
+    owner=models.ForeignKey(User, related_name="user",on_delete=models.CASCADE,null=True)
+    distance = models.IntegerField()
+    ageMin = models.IntegerField()
+    ageMax = models.IntegerField()
+    gender = models.CharField(max_length=20)

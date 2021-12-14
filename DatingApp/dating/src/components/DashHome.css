@@ -3,3 +3,6 @@
     /* background-color: aquamarine; */
     background-size: cover;
 }
+.ant-menu-item-selected {
+    background-color: salmon !important;
+  }

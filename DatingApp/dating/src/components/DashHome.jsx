@@ -1,5 +1,4 @@
 import React from 'react'
-import background from 'E:/Webster/Webster2021/DatingApp/dating/src/background.jpg';
 import Dashboard from './Dashboard';
 import './DashHome.css';
 // export default function DashHome() {

@@ -33,12 +33,8 @@ class FetchDetails extends React.Component {
   
   render() {
      const { previewVisible, previewImage, fileList } = this.state
- 
-   
-
      const onChange = ({ fileList }) => this.setState({ fileList })
-
-    const onPreview = async file => {
+     const onPreview = async file => {
       let src = file.url;
       if (!src) {
         src = await new Promise(resolve => {

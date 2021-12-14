@@ -1,8 +1,5 @@
-import Navbar from "../components/Navbar";
-import HomePage from "../components/HomePage";
-import Footer from './Footer';
+
 import React, { Component } from "react";
-import { BrowserRouter, Route, Switch, Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 import 'reactjs-popup/dist/index.css';
@@ -13,20 +10,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState } from 'react';
 import * as actions from '../store/actions/auth';
 // form and modal modules
-import {
-    Form,
-    Input,
-    Tooltip,
-    Cascader,
-    Select,
-    Row,
-    Col,
-    Checkbox,
-    Button,
-    AutoComplete,
-    Modal
-}
-    from 'antd';
+import {Form, Input, Tooltip, Select,Button,Modal} from 'antd';
 import "antd/dist/antd.css";
 import { QuestionCircleOutlined } from '@ant-design/icons';
 
@@ -146,7 +130,11 @@ class SignUp extends React.Component {
                         </Form.Item>
                         <Form.Item
                             name="password1"
-                            label="Password"
+                            label={
+                                <span>Password <Tooltip title="The password must contain atleast 8 characters. It should contain a mix of letters and numbers.">
+                                <QuestionCircleOutlined />
+                            </Tooltip></span>
+                                }
                             rules={[
                                 {
                                     required: true,

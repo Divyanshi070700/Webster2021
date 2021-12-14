@@ -13,6 +13,7 @@ import "antd/dist/antd.css";
 import { QuestionCircleOutlined } from '@ant-design/icons';
 import { Redirect } from 'react-router-dom';
 import { withRouter } from 'react-router';
+import axios from 'axios';
 class Login extends React.Component{
     render(){
 const CollectValues = ({visible, onDone, onCancel}) => {
@@ -126,7 +127,29 @@ const CollectionsPage = () => {
         );
         setVisible(false);
         //return <Redirect to='/nav'/>
-        this.props.history.push('/nav')
+        // let data;
+        // let len;
+        // axios.defaults.headers = {
+        //   "Content-Type": "application/json",
+        //   Authorization: "Token "+localStorage.getItem('token')
+        // }
+        // axios.get('http://127.0.0.1:8000/details/user/')
+        //   .then(res => {
+        //     localStorage.setItem('detailsOfUser',res.data);
+        //      data=res.data
+        //      len=res.data.length;
+        //     console.log(res.data);
+        //     localStorage.setItem('userId',res.data.pk);
+        //   })
+        //   if(localStorage.getItem('token')==null)
+        //   this.props.history.push('/')
+        //   else{
+        //   <Redirect to='/dashboard'></Redirect>
+        //   if(len==0)
+        //   this.props.history.push('/nav')
+        //   else
+        //   this.props.history.push('/dashboard')
+        //   }
         
 
     };
