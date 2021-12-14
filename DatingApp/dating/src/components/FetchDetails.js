@@ -118,13 +118,6 @@ class FetchDetails extends React.Component {
         //onValuesChange={onFormLayoutChange}
         //size={componentSize}
       >
-        {/* <Form.Item label="Form Size" name="size">
-          <Radio.Group>
-            <Radio.Button value="small">Small</Radio.Button>
-            <Radio.Button value="default">Default</Radio.Button>
-            <Radio.Button value="large">Large</Radio.Button>
-          </Radio.Group>
-        </Form.Item> */}
         <div className="formdetails">
         <div class="sub-entry">
         <Form.Item label="First Name" name="firstName" rules={[
@@ -148,17 +141,7 @@ class FetchDetails extends React.Component {
           <Select style={{ display: 'inline-block', width: 'calc(50% - 8px)', margin: '0 8px' }}>
             <Select.Option value="male">male</Select.Option>
             <Select.Option value="female">female</Select.Option>
-            <Select.Option value="other">other</Select.Option>
-          </Select>
-          </Form.Item>
-          <Form.Item label="Gender Preference" name="preference" rules={[
-          {required: true,
-          message: 'This is required!'}
-        ]}>
-          <Select style={{ display: 'inline-block', width: 'calc(50% - 8px)', margin: '0 8px' }}>
-            <Select.Option value="male">male</Select.Option>
-            <Select.Option value="female">female</Select.Option>
-            <Select.Option value="other">other</Select.Option>
+            
           </Select>
           </Form.Item>
         

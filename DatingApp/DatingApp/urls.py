@@ -15,5 +15,7 @@ urlpatterns = [
     url(r'^rest-auth/registration/', include('rest_auth.registration.urls')),
     url('details/user/',DetailView.as_view(),name="hello"),
     url('setPref/', SetPrefView.as_view(),name="Pref"),
+    url('getSwipe/',GetSwipe.as_view(),name="swipe")
 ]
+
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

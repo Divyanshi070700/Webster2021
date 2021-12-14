@@ -32,22 +32,22 @@ class Dashboard extends React.Component {
          "Content-Type": "application/json",
          Authorization: "Token "+localStorage.getItem('token')
        }
-       axios.get('http://127.0.0.1:8000/details/user/')
-         .then(res => {
-            localStorage.setItem('detailsOfUser',res.data);
-            data=res.data
-            this.setState({
-                                  firstName: data[0].firstName,
-                        lastName: data[0].lastName,
-                        occupation: data[0].Occupation,
-                        bio: data[0].Bio,
-                        age: data[0].Age,
+      //  axios.get('http://127.0.0.1:8000/details/user/')
+      //    .then(res => {
+      //       localStorage.setItem('detailsOfUser',res.data);
+      //       data=res.data
+      //       this.setState({
+      //                             firstName: data[0].firstName,
+      //                   lastName: data[0].lastName,
+      //                   occupation: data[0].Occupation,
+      //                   bio: data[0].Bio,
+      //                   age: data[0].Age,
     
-                             });
-           console.log(res.data);
-           localStorage.setItem('userId',res.data.pk);
+      //                        });
+      //      console.log(res.data);
+      //      localStorage.setItem('userId',res.data.pk);
            
-         })
+      //    })
          
        }
 

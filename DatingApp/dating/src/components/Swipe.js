@@ -13,8 +13,9 @@ class Swipe extends Component {
   }
   componentDidMount() {
     let userList=[];
-    axios.get('http://127.0.0.1:8000/details/user/',{
-       "Content-Type": "application/json"
+    axios.get('http://127.0.0.1:8000/getSwipe/',{
+       "Content-Type": "application/json",
+       //Authorization: "Token "+localStorage.getItem('token')
        
      })
         .then(res => {
@@ -22,8 +23,9 @@ class Swipe extends Component {
          for(let i = 0; i < res.data.length; i++) {
            
              userList.push({pics: [
-               "https://images.unsplash.com/photo-1456885284447-7dd4bb8720bf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80",
-               "https://images.unsplash.com/photo-1532635270-c09dac425ca9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80"
+      //         "https://images.unsplash.com/photo-1456885284447-7dd4bb8720bf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80",
+      // "https://images.unsplash.com/photo-1532635270-c09dac425ca9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80"
+                  "http://127.0.0.1:8000"+res.data[i].pic
              ],
              name: res.data[i].firstName,
              age: res.data[i].Age,
@@ -35,7 +37,7 @@ class Swipe extends Component {
          this.setState({ result: userList });
       this.setState({ isLoading: false });
       localStorage.setItem('userlen',userList.length)
-           console.log("I was called"+this.state.result[0].name)
+           console.log("I was called"+this.state.result[0])
             
          
          

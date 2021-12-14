@@ -43,7 +43,7 @@ class DetailView(APIView):
 class GetSwipe(APIView):
     
     serializer_class = DetailSerializer
-    permission_classes = [IsAuthenticated]
+    #permission_classes = [IsAuthenticated]
     parser_classes= [MultiPartParser, FormParser]
     def get(self,request,*args,**kwargs):
         num=request.user.pk
@@ -58,11 +58,11 @@ class GetSwipe(APIView):
             latMax=arr[2]
             lonMin=arr[1]
             lonMax=arr[3]
-            detail = [ {"firstName": detail.firstName,"Occupation":detail.occupation,"Bio":detail.bio, "Age":today-detail.dob.year,"lat":detail.latitude,"lng":detail.longitude}
+            detail = [ {"pic":detail.profileImg,"firstName": detail.firstName,"Occupation":detail.occupation,"Bio":detail.bio, "Age":today-detail.dob.year}
             for detail in Details.objects.filter(latitude_lte=latMax, latitude_gte=latMin, longitude_lte=lonMax, longitude_gte=lonMin, gender=gen, dob__year_gte=ageMax+today, dob__year_lte=today-ageMin)]
             return Response(detail)
         else:
-            detail = [ {"firstName": detail.firstName,"Occupation":detail.occupation,"Bio":detail.bio, "Age":today-detail.dob.year,"lat":detail.latitude,"lng":detail.longitude}
+            detail = [ {"pic":detail.profileImg.url,"firstName": detail.firstName,"Occupation":detail.occupation,"Bio":detail.bio, "Age":today-detail.dob.year}
             for detail in Details.objects.all()]
             return Response(detail)
         

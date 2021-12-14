@@ -11,7 +11,7 @@ import MyNavDash from './Navbar';
 
 import { useEffect } from "react";
 
-function getobjs(objjs){
+function getobjs(){
       
 var objs = [
   {
@@ -86,7 +86,7 @@ const trans = (r, s) =>
       
       //const userList=getobjs(result);
   const [gone] = useState(() => new Set());
-  console.log(result);
+  console.log("Result obtained"+ result[0].pics);
     
   const [props, set] = useSprings(localStorage.getItem('userlen'), i => ({
     ...to(i),

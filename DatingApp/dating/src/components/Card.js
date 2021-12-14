@@ -5,9 +5,12 @@ import Carousel from "nuka-carousel";
 // import MyNavSwipe from "./NavbarSwipe";
 import MyNavSwipe from './Navbar';
 class Card extends React.Component {
+  
   render() {
-    const { i, x, y, rot, scale, trans, cards, bind, objs } = this.props;
-    const { name, age, distance, text, pics } = objs[i];
+   
+    const { i, x, y, rot, scale, trans, bind, objs } = this.props;
+    // const { name, age, distance, text, pics } = objs[i];
+    const d=objs[0].name;
     <MyNavSwipe/>
     return (
       
@@ -27,15 +30,16 @@ class Card extends React.Component {
           }}
         >
           <div className="card swipe2">
-            <Carousel>
-              {pics.map(pic => (
+           <Carousel>
+              {(objs[i].pics).map(pic => (
                 <img className="cardimg" src={pic} alt="profilePicture" />
               ))}
             </Carousel>
-            <h2 className="Name">{name},</h2>
-            <h2 className="Age">{age}</h2>
-            <h5 className="Distance">{distance}</h5>
-            <h5 className="text">{text}</h5>
+            <h2 className="Name">{objs[i].name},</h2>
+            <h2 className="Age">{objs[i].age}</h2>
+            <h5 className="Distance">{objs[i].distance}</h5>
+            <h5 className="text">{objs[i].text}</h5>
+            
           </div>
         </animated.div>
       </animated.div>
