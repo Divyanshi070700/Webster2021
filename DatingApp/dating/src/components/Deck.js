@@ -6,7 +6,8 @@ import { useGesture } from "react-with-gesture";
 import Card from "./Card";
 // import { Component } from 'react';
 import "../styles/Deck.css";
-import MyNavSwipe from "./NavbarSwipe";
+// import MyNavSwipe from "./NavbarSwipe";
+import MyNavDash from './Navbar';
 
 
 const cards = [1, 2, 3, 4];
