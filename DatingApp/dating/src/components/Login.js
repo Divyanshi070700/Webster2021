@@ -14,6 +14,8 @@ import { QuestionCircleOutlined } from '@ant-design/icons';
 import { Redirect } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import axios from 'axios';
+import "../styles/HomePage.css"
+
 class Login extends React.Component{
     render(){
 const CollectValues = ({visible, onDone, onCancel}) => {
@@ -157,14 +159,14 @@ const CollectionsPage = () => {
     return (
         <div style={{ display: 'flex', justifyContent: 'center' , margin: '10px' }} >
             
-            <Button variant="contained" style={{float: 'center'}} color="primary" 
+            <Button className="buton" variant="contained" style={{float: 'center',borderRadius:'50px',backgroundColor:"#BE9595",fontSize:"20px"}} color="primary" 
                 htmlType="submit"
                 type="primary"
                 onClick={() => {
                     setVisible(true);
                 }}
             >
-                Login!!
+                Login
             </Button>
             <CollectValues
                 visible={visible}

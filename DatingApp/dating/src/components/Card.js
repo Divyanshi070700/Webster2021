@@ -4,6 +4,7 @@ import { to } from "react-spring";
 import Carousel from "nuka-carousel";
 // import MyNavSwipe from "./NavbarSwipe";
 import MyNavSwipe from './Navbar';
+
 class Card extends React.Component {
   
   render() {
@@ -35,10 +36,10 @@ class Card extends React.Component {
                 <img className="cardimg" src={pic} alt="profilePicture" />
               ))}
             </Carousel>
-            <h2 className="Name">{objs[i].name},</h2>
-            <h2 className="Age">{objs[i].age}</h2>
+            <h5 className="Name">Name: {objs[i].name},</h5>
+            <h5 className="Age">Age: {objs[i].age}</h5>
             <h5 className="Distance">{objs[i].distance}</h5>
-            <h5 className="text">{objs[i].text}</h5>
+            <h6 className="text">{objs[i].text}</h6>
             
           </div>
         </animated.div>

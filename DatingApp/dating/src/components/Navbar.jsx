@@ -2,6 +2,7 @@ import React from 'react'
 import { Container, Navbar, Nav, Button } from 'react-bootstrap';
 import { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { IconName } from "react-icons/fa";
 
 //     class MyNavbar extends Component { 
         
@@ -63,7 +64,8 @@ class MyNavbar extends Component {
           </Nav>
           <Nav className="me-auto2">
 
-            <Nav.Link href="/">Profile</Nav.Link>
+            <Nav.Link href="/filldetails">Profile</Nav.Link>
+            {/* <FaBell/> */}
 
             {/* { this.state.isAuthenticated!=null ?
             <Nav.Link href="/">Logout</Nav.Link>
