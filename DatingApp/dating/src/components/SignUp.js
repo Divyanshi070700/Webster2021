@@ -289,12 +289,13 @@ class SignUp extends React.Component {
                         type="primary"
                         variant="primary"
                         size="lg"
+                        style={{float: 'center',borderRadius:'50px',backgroundColor:"#B08989",fontSize:"20px"}}
                         onClick={() => {
 
                             setVisible(true);
                         }}
                     >
-                        Create Account!
+                        Create Account
                     </Button>
                     <CollectionCreateForm
                         visible={visible}
