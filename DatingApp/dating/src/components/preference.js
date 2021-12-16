@@ -34,7 +34,7 @@ const onFinish = (values) => {
       })
         .then(function (response) {
           //handle success
-          console.log(response);
+          console.log("updated"+response);
         })
         .catch(function (response) {
           //handle error

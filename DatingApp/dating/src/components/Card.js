@@ -9,8 +9,8 @@ class Card extends React.Component {
   render() {
    
     const { i, x, y, rot, scale, trans, bind, objs } = this.props;
-    // const { name, age, distance, text, pics } = objs[i];
-    const d=objs[0].name;
+    //  const { name, age, distance, text, pics } = objs[i];
+    const d=objs[0].pics;
     <MyNavSwipe/>
     return (
       
@@ -31,13 +31,14 @@ class Card extends React.Component {
         >
           <div className="card swipe2">
            <Carousel>
+           
               {(objs[i].pics).map(pic => (
                 <img className="cardimg" src={pic} alt="profilePicture" />
               ))}
             </Carousel>
             <h2 className="Name">{objs[i].name},</h2>
             <h2 className="Age">{objs[i].age}</h2>
-            <h5 className="Distance">{objs[i].distance}</h5>
+            <h3>{d}</h3>
             <h5 className="text">{objs[i].text}</h5>
             
           </div>

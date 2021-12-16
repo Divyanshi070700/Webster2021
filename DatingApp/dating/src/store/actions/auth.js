@@ -27,6 +27,8 @@ export const logout=()=>
     localStorage.removeItem('user');
     localStorage.removeItem('expirationDate');
     localStorage.removeItem('token');
+    localStorage.removeItem('DetailsFetched');
+    localStorage.removeItem('PreferenceSet');
     console.log("hey");
     
     return{
@@ -74,15 +76,34 @@ export const authLogin=(username, password)=>{
              len=res.data.length;
             //console.log(res.data);
             //localStorage.setItem('userId',res.data.pk);
-            if(len==0)
-            localStorage.setItem('DetailsFetched',true)
-            else
-            localStorage.setItem('DetailsFetched',false)
+            if(len!= 0){
+            localStorage.setItem('DetailsFetched','true')
+            
+            }
+            console.log("From auth"+len);
+            console.log(localStorage.getItem('DetailsFetched'));
           })
           .catch(err=>{
             
             alert("Detail not fetched! "+ err);
            })
+
+           axios({
+            method: "get",
+            url: "http://127.0.0.1:8000/setPref/",
+            
+            headers: { "Content-Type": "application/json" ,
+            Authorization: "Token "+localStorage.getItem('token')},
+          })
+            .then(function (response) {
+              //handle success
+              if(response.data.length!=0)
+              localStorage.setItem('PreferenceSet','true')
+            })
+            .catch(function (response) {
+              //handle error
+              console.log(response);
+            }); 
           
     })
     .catch(err=>{

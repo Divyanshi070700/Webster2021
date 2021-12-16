@@ -13,12 +13,14 @@ class Swipe extends Component {
   }
   componentDidMount() {
     let userList=[];
-    axios.get('http://127.0.0.1:8000/getSwipe/',{
-       "Content-Type": "application/json",
-       //Authorization: "Token "+localStorage.getItem('token')
-       
-     })
-        .then(res => {
+    axios({
+      method: "get",
+      url: "http://127.0.0.1:8000/getSwipe/",
+      
+      headers: { "Content-Type": "application/json" ,
+      Authorization: "Token "+localStorage.getItem('token')},
+    })   
+    .then(res => {
        
          for(let i = 0; i < res.data.length; i++) {
            

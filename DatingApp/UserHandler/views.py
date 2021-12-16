@@ -1,3 +1,4 @@
+from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render
 from rest_framework.views import APIView
 from . models import *
@@ -43,25 +44,35 @@ class DetailView(APIView):
 class GetSwipe(APIView):
     
     serializer_class = DetailSerializer
-    #permission_classes = [IsAuthenticated]
-    parser_classes= [MultiPartParser, FormParser]
+    permission_classes = [IsAuthenticated]
+    parser_classes= [MultiPartParser, FormParser, JSONParser]
     def get(self,request,*args,**kwargs):
         num=request.user.pk
         today = date.today().year
-        obj=setPreference.objects.filter(owner=num)
+        obj=setPreference.objects.filter(owner=num)[0]
+        obj2=Details.objects.filter(owner=num)[0]
+        #print("object exists",obj.distance)
         if obj:
-            arr=get_latlng_bounderies(obj[0].latitude,obj[0].longitude,obj.distance)
+            arr=get_latlng_bounderies(obj2.latitude,obj2.longitude,obj.distance)
             gen=obj.gender
+            #print(gen)
             ageMin=obj.ageMin
             ageMax=obj.ageMax
             latMin=arr[0]
             latMax=arr[2]
             lonMin=arr[1]
             lonMax=arr[3]
-            detail = [ {"pic":detail.profileImg,"firstName": detail.firstName,"Occupation":detail.occupation,"Bio":detail.bio, "Age":today-detail.dob.year}
-            for detail in Details.objects.filter(latitude_lte=latMax, latitude_gte=latMin, longitude_lte=lonMax, longitude_gte=lonMin, gender=gen, dob__year_gte=ageMax+today, dob__year_lte=today-ageMin)]
+            detail = [ {"pic":detail.profileImg.url,"firstName": detail.firstName,"Occupation":detail.occupation,"Bio":detail.bio, "Age":today-detail.dob.year}
+            for detail in Details.objects.filter(latitude__lte=latMax, latitude__gte=latMin, longitude__lte=lonMax, longitude__gte=lonMin, gender=gen,dob__year__gte=today-ageMax, dob__year__lte=today-ageMin)]
+            
+            #print(detail[0])
+
             return Response(detail)
         else:
+            print("else was called")
+            print(num)
+            obj2=Details.objects.filter(owner=num)
+            print(obj2[0].firstName)
             detail = [ {"pic":detail.profileImg.url,"firstName": detail.firstName,"Occupation":detail.occupation,"Bio":detail.bio, "Age":today-detail.dob.year}
             for detail in Details.objects.all()]
             return Response(detail)
@@ -88,7 +99,7 @@ class SetPrefView(APIView):
         print(data)
         
         if (serializer.is_valid(raise_exception=True)):  
-               #serializer.save()
+               serializer.save()
                print(data)
                return Response(serializer.data)
              

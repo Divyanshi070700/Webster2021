@@ -48,7 +48,7 @@ class MyNavbar extends Component {
             <Nav.Link href="/">Home</Nav.Link>
             {this.state.isAuthenticated!=null ?
              <>
-            { this.state.isFetched== "true" ?
+            { this.state.isFetched != null ?
             <Nav.Link href="/dashboard">Dashboard</Nav.Link>
             :
             <Nav.Link href="/fillDetails">Complete Profile</Nav.Link>

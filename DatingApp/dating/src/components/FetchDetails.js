@@ -18,6 +18,7 @@ class FetchDetails extends React.Component {
     previewVisible: false,
     previewImage: '',
     fileList: [],
+    isFilled:localStorage.getItem('DetailsFetched')
   }
   
   render() {
@@ -98,8 +99,15 @@ class FetchDetails extends React.Component {
       
 
   };
+  if (this.state.isFilled == "true"){
   return(
     <>
+    <h3>Already filled! {this.state.isFilled}</h3>
+    </>
+  )}
+  return(
+    <>
+     
         <MyNavbar/>
       
      
