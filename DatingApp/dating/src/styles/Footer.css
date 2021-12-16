@@ -8,3 +8,17 @@
 .title{
     text-align: center;
 } */
+
+.Footer
+{
+    position:fixed;
+    left:0px;
+    margin-bottom:0px !important;
+    height:30px;
+    width:100%;
+}
+.footer-container {
+    margin-top: 0% !important;
+    margin-bottom: 0% !important;
+    
+}
