@@ -39,7 +39,7 @@ class Card extends React.Component {
             </Carousel>
             <h5 className="Name">Name: {objs[i].name},</h5>
             <h5 className="Age">Age: {objs[i].age}</h5>
-            <h5 className="Distance">{objs[i].distance}</h5>
+            <h5 className="Distance">{objs[i].pk}</h5>
             <h6 className="text">{objs[i].text}</h6>
             
           </div>

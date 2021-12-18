@@ -99,6 +99,15 @@ const onFinish = (values) => {
 </Form>
         </>
     );
+    else
+    return(
+      <>
+
+      <MyNavbar/>
+      <h2>Sorry! Not logged in!</h2>
+      </>
+
+    )
 }
 
 }

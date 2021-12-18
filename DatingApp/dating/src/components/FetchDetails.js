@@ -181,10 +181,7 @@ class FetchDetails extends React.Component {
         <Form.Item label="">
         <Button  type="primary" htmlType="submit">Save</Button>
         </Form.Item>
-        <Form.Item label="">
-          <Button  href="/dashboard" type="primary">I am ok with my details! Let's begin.</Button>
-        </Form.Item>
-
+       
         </div>
         
       <Form.Item style={{display: 'flex'}} name="myImage" >

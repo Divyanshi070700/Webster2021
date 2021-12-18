@@ -1,15 +1,15 @@
-import React, { Component } from "react";
-// import Deck from "./components/Deck";
+import React, { Component,Link } from "react";
 import Deck from "./Deck";
 import axios from "axios";
 // import MyNavSwipe from "./NavbarSwipe";
 import MyNavSwipe from "./Navbar";
+import { Button } from "react-bootstrap";
 
 
 class Swipe extends Component {
   constructor(props) {
     super(props);
-    this.state = { isLoading: true, result: undefined };
+    this.state = { isLoading: true, result: undefined, isSet: localStorage.getItem('PreferenceSet') };
   }
   componentDidMount() {
     let userList=[];
@@ -29,6 +29,7 @@ class Swipe extends Component {
       // "https://images.unsplash.com/photo-1532635270-c09dac425ca9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80"
                   "http://127.0.0.1:8000"+res.data[i].pic
              ],
+             pk:res.data[i].owner,
              name: res.data[i].firstName,
              age: res.data[i].Age,
              distance: "2 miles away",
@@ -49,21 +50,27 @@ class Swipe extends Component {
   }
   render() {
     const { isLoading, result } = this.state;
-    if (isLoading) {
+    
+    if(!isLoading)
       return (
-      <>
-      <MyNavSwipe/>
-      <div className="App">Loading...</div>
-      </>);
-    }
-
-    return (
       <>
       <MyNavSwipe/>
       <Deck {...this.state.result}/>
       
+      </>);
+      else
+      return(
+<>
+      <MyNavSwipe/>
+      <h2>Loading...</h2>
+      
       </>
       );
+
+    
+    
+    
+      
   }
 }
 

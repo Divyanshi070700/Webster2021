@@ -62,15 +62,15 @@ class GetSwipe(APIView):
             latMax=arr[2]
             lonMin=arr[1]
             lonMax=arr[3]
-            detail = [ {"pic":detail.profileImg.url,"firstName": detail.firstName,"Occupation":detail.occupation,"Bio":detail.bio, "Age":today-detail.dob.year}
+            detail = [ {"owner":detail.owner.pk,"pic":detail.profileImg.url,"firstName": detail.firstName,"Occupation":detail.occupation,"Bio":detail.bio, "Age":today-detail.dob.year}
             for detail in Details.objects.filter(latitude__lte=latMax, latitude__gte=latMin, longitude__lte=lonMax, longitude__gte=lonMin, gender=gen,dob__year__gte=today-ageMax, dob__year__lte=today-ageMin)]
             
-            #print(detail[0])
+            print(detail[0])
 
             return Response(detail)
         else:
-            print("else was called")
-            print(num)
+            #print("else was called")
+            #print(num)
             obj2=Details.objects.filter(owner=num)
             print(obj2[0].firstName)
             detail = [ {"pic":detail.profileImg.url,"firstName": detail.firstName,"Occupation":detail.occupation,"Bio":detail.bio, "Age":today-detail.dob.year}
