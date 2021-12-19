@@ -14,6 +14,7 @@ import chatt from '../images/chatt.png';
 import swipes from '../images/swipes.png';
 import matches from '../images/matches.jpg';
 import calender from '../images/calender.png';
+import activityfeed from '../images/activityfeed.jpg';
 const { SubMenu } = Menu;
 
 class Dashboard extends React.Component {
@@ -70,9 +71,9 @@ class Dashboard extends React.Component {
                   <Card.Img variant="top" src={chatt} />
                   <Card.Body>
                     <Card.Title>Wanna Chat?</Card.Title>
-                    <Card.Text>
-                      Just making matches isn't enough... Interact with your matches to make your connections strong..
-                    </Card.Text>
+                    <Card.Text className="cards-style">
+                      Just making matches isn't enough...Try to make your connections strong..
+                    </Card.Text >
                     {/* <Button variant="primary">Go Ahead💬</Button> */}
                     <Link to="/chat">
                       <Button style={{ borderRadius:'50px'}} type="primary" >
@@ -87,9 +88,8 @@ class Dashboard extends React.Component {
                   <Card.Img variant="top" src={matches} />
                   <Card.Body>
                     <Card.Title>Matches</Card.Title>
-                    <Card.Text>
-                      Some quick example text to build on the card title and make up the bulk of
-                      the card's content.
+                    <Card.Text className="cards-style">
+                      Check out the list of matches you already have in your pocket...
                     </Card.Text>
                     {/* <Button variant="primary">Go Ahead😊</Button> */}
                     <Link to="/matches">
@@ -105,7 +105,7 @@ class Dashboard extends React.Component {
                   <Card.Img variant="top" src={swipes} />
                   <Card.Body>
                     <Card.Title>Start Swiping !!</Card.Title>
-                    <Card.Text>
+                    <Card.Text className="cards-style">
                       Looking or some new Connections? What are you waiting for?
                       Try your Luck...
                     </Card.Text>
@@ -124,7 +124,7 @@ class Dashboard extends React.Component {
                   <Card.Img variant="top" src={calender} />
                   <Card.Body>
                     <Card.Title>Calender</Card.Title>
-                    <Card.Text>
+                    <Card.Text className="cards-style">
                       Are you confused about your date plans?
                       How about checking your schedule?
                     </Card.Text>
@@ -137,7 +137,25 @@ class Dashboard extends React.Component {
                   </Card.Body>
                 </Card>
               </Col>
+              <Col>
+                <Card className="cards1">
+                  <Card.Img variant="top" src={activityfeed} />
+                  <Card.Body>
+                    <Card.Title>Updates</Card.Title>
+                    <Card.Text className="cards-style">
+                      Check all yours and your friend's posts and updates here..
+                    </Card.Text>
+                    <Link to="/activity">
+                      <Button style={{ borderRadius:'50px'}} type="primary" >
+                        Check here📰 
 
+                      </Button>
+                    </Link>
+                    
+                    {/* <Button variant="primary">Go Ahead❤️</Button> */}
+                  </Card.Body>
+                </Card>
+              </Col>
             </Row>
           </div>
           {/* <div style={{ width: 256 ,float:'left'}}>
