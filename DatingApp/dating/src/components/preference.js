@@ -12,7 +12,10 @@ function onChange(value) {
   }
 
 class Preference extends React.Component {
-    
+  state={isAuthenticated: localStorage.getItem('token'),
+  isFetched: localStorage.getItem('DetailsFetched'),
+  isSet: localStorage.getItem('PreferenceSet')
+};
 render(){
 const onFinish = (values) => {
 
@@ -48,6 +51,7 @@ const onFinish = (values) => {
     
         <>
         <MyNavbar/>
+        {this.state.isSet == null?
         <Form  
         onFinish={onFinish}
         labelCol={{
@@ -97,6 +101,11 @@ const onFinish = (values) => {
         </Form.Item>
   
 </Form>
+:
+<>
+<div>Already filled!</div>
+</>
+}
         </>
     );
     else

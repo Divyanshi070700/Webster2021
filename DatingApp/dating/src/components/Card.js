@@ -2,13 +2,16 @@ import React from "react";
 import { animated} from "react-spring";
 import { to } from "react-spring";
 import Carousel from "nuka-carousel";
+import Heart from "react-animated-heart"
+import Hearty from "./Hearty";
 // import MyNavSwipe from "./NavbarSwipe";
 import MyNavSwipe from './Navbar';
 
 class Card extends React.Component {
-  
+  state={isClick:false
+};
+
   render() {
-   
     const { i, x, y, rot, scale, trans, bind, objs } = this.props;
     //  const { name, age, distance, text, pics } = objs[i];
     const d=objs[0].pics;
@@ -31,18 +34,17 @@ class Card extends React.Component {
           }}
         >
           <div className="card swipe2">
-           <Carousel>
            
+           <Carousel>
               {(objs[i].pics).map(pic => (
                 <img className="cardimg" src={pic} alt="profilePicture" />
               ))}
             </Carousel>
-            <h5 className="Name">Name: {objs[i].name},</h5>
+            <h5 className="Name">Name: {objs[i].name}</h5>
             <h5 className="Age">Age: {objs[i].age}</h5>
-            <h5 className="Distance">{objs[i].pk}</h5>
             <h6 className="text">{objs[i].text}</h6>
-            
-          </div>
+            <Hearty/>
+            </div>
         </animated.div>
       </animated.div>
     );

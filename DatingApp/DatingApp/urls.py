@@ -2,6 +2,7 @@
 from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls import url
+from MatchesHandler.views import *
 from core.views import *
 from UserHandler.views import *
 from django.conf.urls.static import static
@@ -15,7 +16,8 @@ urlpatterns = [
     url(r'^rest-auth/registration/', include('rest_auth.registration.urls')),
     url('details/user/',DetailView.as_view(),name="hello"),
     url('setPref/', SetPrefView.as_view(),name="Pref"),
-    url('getSwipe/',GetSwipe.as_view(),name="swipe")
+    url('getSwipe/',GetSwipe.as_view(),name="swipe"),
+    url('sendSwipe/', SwipeView.as_view(), name="SwipeView")
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
