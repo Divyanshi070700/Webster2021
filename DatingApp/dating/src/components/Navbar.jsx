@@ -35,7 +35,8 @@ import "../styles/Navbar.css";
 class MyNavbar extends Component {
 
   state={isAuthenticated: localStorage.getItem('token'),
-    isFetched: localStorage.getItem('DetailsFetched')
+    isFetched: localStorage.getItem('DetailsFetched'),
+    isSet: localStorage.getItem('PreferenceSet')
 };
   render() {
     
@@ -50,28 +51,46 @@ class MyNavbar extends Component {
             {this.state.isAuthenticated!=null ?
              <>
             { this.state.isFetched != null ?
+            <>
             <Nav.Link href="/dashboard">Dashboard</Nav.Link>
-            :
-            <Nav.Link href="/fillDetails">Complete Profile</Nav.Link>
+            { this.state.isSet == null ?
+              <Nav.Link href="/setPref">Set Preference</Nav.Link>
+              :
+              <></>
+
             }
             </>
+            :
+            <>
+            <Nav.Link href="/fillDetails">Complete Profile</Nav.Link>
+            { this.state.isSet == null ?
+              <Nav.Link href="/setPref">Set Preference</Nav.Link>
+              :
+              <></>
+
+            }
+            </>
+            }
+            </>
+            
+            
+            
+            
           :
-          <Nav.Link href="/dashboard"></Nav.Link>
+          <Nav.Link href=""></Nav.Link>
            }
             <Nav.Link href="/Contactus">Contact Us</Nav.Link>
             <Nav.Link href="/faq">FAQ</Nav.Link>
             <Nav.Link href="/">About Us</Nav.Link>
           </Nav>
           <Nav className="me-auto2">
-
-            <Nav.Link href="/filldetails">Profile</Nav.Link>
-            {/* <FaBell/> */}
-
-            {/* { this.state.isAuthenticated!=null ?
-            <Nav.Link href="/">Logout</Nav.Link>
-              :
-              <Nav.Link href="/" ></Nav.Link>
-          } */}
+            
+          { this.state.isFetched != null ?
+            <Nav.Link href="">Profile</Nav.Link>
+            :
+            <Nav.Link href=""></Nav.Link>
+            }
+            
             
 
 

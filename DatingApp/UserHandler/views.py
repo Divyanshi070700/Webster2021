@@ -1,6 +1,10 @@
 from django.core.exceptions import ObjectDoesNotExist
+#from django.db.models.expressions import Exists
 from django.shortcuts import render
 from rest_framework.views import APIView
+from django.db.models import Q,Subquery,Exists
+from MatchesHandler.models import Matches
+from MatchesHandler.models import SwipeR
 from . models import *
 from rest_framework.response import Response
 from . serializer import *
@@ -33,13 +37,19 @@ class DetailView(APIView):
         for detail in Details.objects.filter(owner=num)]
         return Response(detail)
     def post(self, request,*args,**kwargs):
-        data=request.data
-        serializer = DetailSerializer(data=data)
-        data['owner']=request.user.pk
-        if (serializer.is_valid(raise_exception=True)):
+        num=request.user.pk
+        obj=Details.objects.filter(owner=num)
+        if(len(obj)==0):
+            data=request.data
+            serializer = DetailSerializer(data=data)
+            data['owner']=request.user.pk
+            if (serializer.is_valid(raise_exception=True)):
             #if((datetime.date.today() - self.dob) > datetime.timedelta(days=18*365)):
                serializer.save()
                return Response(serializer.data)
+        else:
+            return Response("Already filled")
+
 
 class GetSwipe(APIView):
     
@@ -49,10 +59,12 @@ class GetSwipe(APIView):
     def get(self,request,*args,**kwargs):
         num=request.user.pk
         today = date.today().year
-        obj=setPreference.objects.filter(owner=num)[0]
-        obj2=Details.objects.filter(owner=num)[0]
+        objs=setPreference.objects.filter(owner=num)
+        obj2s=Details.objects.filter(owner=num)
         #print("object exists",obj.distance)
-        if obj:
+        if (len(objs)!=0):
+            obj=objs[0]
+            obj2=obj2s[0]
             arr=get_latlng_bounderies(obj2.latitude,obj2.longitude,obj.distance)
             gen=obj.gender
             #print(gen)
@@ -62,10 +74,20 @@ class GetSwipe(APIView):
             latMax=arr[2]
             lonMin=arr[1]
             lonMax=arr[3]
+            permitted=SwipeR.objects.filter(swipedBy=num).values('swipedUser')
+            permitted2=Matches.objects.filter(user1=num).values('user2')
+            permitted3=Matches.objects.filter(user2=num).values('user1')
+            fo=User.objects.filter(Q(pk__in=permitted.values('swipedUser')) | Q(pk__in=permitted2.values('user2')) | Q(pk__in=permitted3.values('user1')))
+            fobjs=Details.objects.filter(~Q(owner__in=fo))
+            #fobjs2=Details.objects.filter(~Exists(Subquery(permitted2.values('user2'))))
+            #fobjs3=Details.objects.filter(~Exists((permitted3.values('user1'))))
+            print(permitted.values('swipedUser'),permitted2,permitted3)
+            print(fo)
+            print(fobjs)
             detail = [ {"owner":detail.owner.pk,"pic":detail.profileImg.url,"firstName": detail.firstName,"Occupation":detail.occupation,"Bio":detail.bio, "Age":today-detail.dob.year}
-            for detail in Details.objects.filter(latitude__lte=latMax, latitude__gte=latMin, longitude__lte=lonMax, longitude__gte=lonMin, gender=gen,dob__year__gte=today-ageMax, dob__year__lte=today-ageMin)]
-            
-            print(detail[0])
+            for detail in fobjs.filter(latitude__lte=latMax, latitude__gte=latMin, longitude__lte=lonMax, longitude__gte=lonMin, gender=gen,dob__year__gte=today-ageMax, dob__year__lte=today-ageMin)]
+            #Details.objects.filter(latitude__lte=latMax, latitude__gte=latMin, longitude__lte=lonMax, longitude__gte=lonMin, gender=gen,dob__year__gte=today-ageMax, dob__year__lte=today-ageMin
+            print(len(detail))
 
             return Response(detail)
         else:
@@ -87,19 +109,25 @@ class SetPrefView(APIView):
         num=request.user.pk
         det = [ {"distance": det.distance,"ageMin": det.ageMin,"ageMax":det.ageMax,"gender":det.gender}
         for det in setPreference.objects.filter(owner=num)]
-        #get_latlng_bounderies(Details.objects.filter(owner=num)[0].latitude,Details.objects.filter(owner=num)[0].longitude,10)
+        
         return Response(det)
 
     def post(self, request):
-        data=request.data
-        serializer = PrefSerializer(data=data)
-        data._mutable = True
         num=request.user.pk
-        data['owner']=num
-        print(data)
+        obj=setPreference.objects.filter(owner=num)
+        if(len(obj)==0):
+
+            data=request.data
+            serializer = PrefSerializer(data=data)
+            data._mutable = True
+            num=request.user.pk
+            data['owner']=num
+            print(data)
         
-        if (serializer.is_valid(raise_exception=True)):  
-               serializer.save()
+            if (serializer.is_valid(raise_exception=True)):  
+               #serializer.save()
                print(data)
                return Response(serializer.data)
+        else:
+            return Response("Already exists!")
              

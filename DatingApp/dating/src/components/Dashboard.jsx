@@ -1,6 +1,6 @@
 import React from "react";
 // import MyNavDash from "./NavbarDashboard";
-import MyNavDash from "./Navbar";
+import MyNavbar from "./Navbar";
 import { Menu, Button } from 'antd';
 import Icon from '@ant-design/icons';
 import { Link } from 'react-router-dom';
@@ -61,7 +61,7 @@ class Dashboard extends React.Component {
     return (
       <div>
         <div >
-          <MyNavDash />
+          <MyNavbar />
           
           <div className="cards">
             <Row className="cards2">

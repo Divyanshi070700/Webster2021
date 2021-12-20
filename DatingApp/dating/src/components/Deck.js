@@ -6,10 +6,33 @@ import { useGesture } from "react-with-gesture";
 import Card from "./Card";
 // import { Component } from 'react';
 import "../styles/Deck.css";
+import axios from "axios";
 // import MyNavSwipe from "./NavbarSwipe";
 import MyNavDash from './Navbar';
 import { useEffect } from "react";
 import SkeletonInput from "antd/lib/skeleton/Input";
+
+function sendData(pk)
+{
+  const formData = new FormData();
+  
+    formData.append("swipedUser",pk);
+  axios({
+    method: "post",
+    url: "http://127.0.0.1:8000/sendSwipe/",
+    data: formData,
+    headers: { "Content-Type": "application/json" ,
+    Authorization: "Token "+localStorage.getItem('token')},
+  })
+    .then(function (response) {
+      //handle success
+      console.log("sent..."+response);
+    })
+    .catch(function (response) {
+      //handle error
+      console.log(response);
+    });
+}
 
 const to = i => ({
   x: 0,
@@ -24,16 +47,14 @@ const trans = (r, s) =>
   `perspective(1500px) rotateX(30deg) rotateY(${r /
     10}deg) rotateZ(0 deg) scale(${s})`;
 
-    function sleep(ms) {
-      return new Promise(resolve => setTimeout(resolve, ms));
-    }
+     
      function Deck(result) {
   
       
       
       //const userList=getobjs(result);
   const [gone] = useState(() => new Set());
-  console.log("Result obtained"+ result[0].pk);
+  //console.log("Result obtained"+ result[1].pics);
   var leng=localStorage.getItem('userlen');
     
   const [props, set] = useSprings(localStorage.getItem('userlen'), i => ({
@@ -64,7 +85,8 @@ const trans = (r, s) =>
         
         //const x = isGone ? 1750 * dir : down ? 1750*dir : 0;
          //console.log("is Gone is: "+isGone);
-         if(isGone ){
+         if(isGone && xDelta>0 ){
+          sendData(result[i].pk);   
          console.log("i is:"+i+"result[i]: "+result[i].pk);
          
         }

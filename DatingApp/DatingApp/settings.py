@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     #'knox',
     'core',
     'UserHandler',
+    'MatchesHandler',
     'corsheaders',
     'django.contrib.sites',
     'rest_framework',

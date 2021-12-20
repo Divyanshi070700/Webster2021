@@ -26,7 +26,7 @@ class Swipe extends Component {
            
              userList.push({pics: [
       //         "https://images.unsplash.com/photo-1456885284447-7dd4bb8720bf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80",
-      // "https://images.unsplash.com/photo-1532635270-c09dac425ca9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80"
+       //"https://images.unsplash.com/photo-1532635270-c09dac425ca9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80"
                   "http://127.0.0.1:8000"+res.data[i].pic
              ],
              pk:res.data[i].owner,
@@ -37,10 +37,15 @@ class Swipe extends Component {
                
              });
          }
+
          this.setState({ result: userList });
-      this.setState({ isLoading: false });
-      localStorage.setItem('userlen',userList.length)
-           console.log("I was called"+this.state.result[0])
+       if(userList.length==res.data.length) { 
+         console.log(res.data.length);
+        localStorage.setItem('userlen',userList.length)
+       this.setState({ isLoading: false });
+       }
+      
+           console.log("I was called"+this.state.result[0].name)
             
          
          
@@ -55,7 +60,14 @@ class Swipe extends Component {
       return (
       <>
       <MyNavSwipe/>
-      <Deck {...this.state.result}/>
+      {
+        this.state.isSet!=null?
+        <Deck {...this.state.result}/>
+      :
+      <>
+      <h3>Your preferences are not set. Kindly set them for a better experience   </h3> 
+      </>
+      }
       
       </>);
       else
