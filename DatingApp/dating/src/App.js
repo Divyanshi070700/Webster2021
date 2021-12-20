@@ -19,6 +19,7 @@ import * as actions from './store/actions/auth';
 import "antd/dist/antd.css";
 import FetchDetails from "./components/FetchDetails";
 import Preference from "./components/preference";
+import Activity from "./pages/Activity/Activity";
 class App extends React.Component {
 
 	componentDidMount() {
@@ -46,8 +47,9 @@ class App extends React.Component {
 						<Route path="/Swipe" component={Swipe} />
 						<Route path="/faq" component={Faq} />
 						<Route path="/Contactus" component={Contactus} />
-						{/* <Route path="/Card" component={Card} />  */}
-                         <Route path="/setPref" component={Preference}/>
+						{/* <Route path="/Activity" component={Activity} />  */}
+						<Route exact path="/activity"><Activity /></Route>
+                        <Route path="/setPref" component={Preference}/>
 					</Switch>
 				</BrowserRouter>
 				{/* <Footer/> */}

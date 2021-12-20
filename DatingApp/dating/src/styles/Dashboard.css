@@ -4,6 +4,7 @@
     /* margin: auto; */
     /* width: 90%; */
 /* } */ 
+
 .cards{
     /* justify-content: center; */
     /* height: 10%; */
@@ -37,3 +38,10 @@
     border-color: #2E4C80;
     border-color: cutom-cor;
 }
+
+/* .card-style{
+    /* height:"50%"; */
+    /* min-height: 10px;
+    max-height: 50px; */
+   
+/* }  */
