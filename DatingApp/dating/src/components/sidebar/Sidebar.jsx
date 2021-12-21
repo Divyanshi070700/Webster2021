@@ -20,7 +20,7 @@ export default function Sidebar() {
         <ul className="sidebarList">
           <li className="sidebarListItem">
             <RssFeed className="sidebarIcon" />
-            <span className="sidebarListItemText">Feed</span>
+            <span className="sidebarListItemText">My Feed</span>
           </li>
           <li className="sidebarListItem">
             <Chat className="sidebarIcon" />
@@ -35,7 +35,7 @@ export default function Sidebar() {
             <span className="sidebarListItemText">Schedule</span>
           </li>
         </ul>
-        <button className="sidebarButton">Show More</button>
+        {/* <button className="sidebarButton">Show More</button> */}
         <hr className="sidebarHr" />
         <ul className="sidebarFriendList">
           {Users.map((u) => (

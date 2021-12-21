@@ -18,6 +18,7 @@ import * as actions from './store/actions/auth';
 // form and modal modules
 import "antd/dist/antd.css";
 import FetchDetails from "./components/FetchDetails";
+import Calender from "./components/Calender";
 import Preference from "./components/preference";
 import Activity from "./pages/Activity/Activity";
 class App extends React.Component {
@@ -49,6 +50,7 @@ class App extends React.Component {
 						<Route path="/Contactus" component={Contactus} />
 						{/* <Route path="/Activity" component={Activity} />  */}
 						<Route exact path="/activity"><Activity /></Route>
+						<Route exact path="/calender"><Calender /></Route>
                         <Route path="/setPref" component={Preference}/>
 					</Switch>
 				</BrowserRouter>
