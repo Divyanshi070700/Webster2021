@@ -1,8 +1,10 @@
+import axios from "axios";
+
 export const Users = [
   {
     id:1,
     profilePicture: "assets/person/1.jpeg",
-    username: "Safak Kocaoglu",
+    username: "Mili Kocaoglu",
   },
   {
     id:2,
@@ -60,6 +62,8 @@ export const Posts = [
     userId: 1,
     like: 32,
     comment: 9,
+    ownerpic:"assets/post/1.jpeg",
+    fullName:"Miss Tiwari"
   },
   {
     id: 2,
@@ -68,6 +72,8 @@ export const Posts = [
     userId: 2,
     like: 2,
     comment: 1,
+    ownerpic:"assets/post/1.jpeg",
+    fullName:"Miss Tiwari"
   },
   {
     id: 3,
@@ -77,6 +83,8 @@ export const Posts = [
     userId: 3,
     like: 61,
     comment: 2,
+    ownerpic:"assets/post/1.jpeg",
+    fullName:"Miss Tiwari"
   },
   {
     id: 4,
@@ -85,6 +93,8 @@ export const Posts = [
     userId: 4,
     like: 7,
     comment: 3,
+    ownerpic:"assets/post/1.jpeg",
+    fullName:"Miss Tiwari"
   },
   {
     id: 5,
@@ -93,6 +103,8 @@ export const Posts = [
     userId: 5,
     like: 23,
     comment: 5,
+    ownerpic:"assets/post/1.jpeg",
+    fullName:"Miss Tiwari"
   },
   {
     id: 6,
@@ -101,6 +113,8 @@ export const Posts = [
     userId: 6,
     like: 44,
     comment: 6,
+    ownerpic:"assets/post/1.jpeg",
+    fullName:"Miss Tiwari"
   },
   {
     id: 7,
@@ -110,6 +124,8 @@ export const Posts = [
     userId: 7,
     like: 52,
     comment: 3,
+    ownerpic:"assets/post/1.jpeg",
+    fullName:"Miss Tiwari"
   },
   {
     id: 8,
@@ -118,6 +134,8 @@ export const Posts = [
     userId: 8,
     like: 15,
     comment: 1,
+    ownerpic:"assets/post/1.jpeg",
+    fullName:"Miss Tiwari"
   },
   {
     id: 9,
@@ -127,6 +145,8 @@ export const Posts = [
     userId: 9,
     like: 11,
     comment: 2,
+    ownerpic:"assets/post/1.jpeg",
+    fullName:"Miss Tiwari"
   },
   {
     id: 10,
@@ -135,5 +155,7 @@ export const Posts = [
     userId: 10,
     like: 104,
     comment: 12,
+    ownerpic:"assets/post/1.jpeg",
+    fullName:"Miss Tiwari"
   },
 ];

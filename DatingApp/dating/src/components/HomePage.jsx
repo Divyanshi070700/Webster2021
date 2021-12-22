@@ -27,9 +27,6 @@ class HomePage extends React.Component {
                     <div className="rightdiv">
                         <h2>Start Something Epic!</h2>
                         
-                        <br>
-                        </br>
-
                         {
                             this.props.isAuthenticated ?
                                 <Button type="primary" onClick={this.props.logout}>Logout!</Button>
