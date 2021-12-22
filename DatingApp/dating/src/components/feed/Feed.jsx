@@ -58,7 +58,7 @@ class Feed extends Component {
     const { isLoading, Posts } = this.state;
   if(!isLoading)
   return (
-    <div className="feed">
+    <div className="feed" id="google_translate_element">
       <div className="feedWrapper">
         <Share />
         {/* <h2>{Posts[0].desc}</h2> */}

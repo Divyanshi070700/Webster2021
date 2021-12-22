@@ -1,0 +1,70 @@
+.ant-card-body{
+    background: linear-gradient(rgba(255,255,255,.2), rgba(255,255,255,.20)), url("../images/back.png");
+}
+.ant-table-cell{
+    font-size:large;
+    text-align: center !important;
+    border-color: black !important;
+    border-top-color: black !important;
+    border-left-color: black !important;
+    background-color: rgb(233, 218, 218);
+    /* justify-content: center !important; */
+    /* align-content: center   !important; */
+}
+.th.ant-table-cell{
+    border-color: black !important;
+}
+.ant-input-affix-wrapper{
+    font-size:x-large !important;
+    text-align: center !important;
+}
+.ant-radio-button{
+    font-size:x-large !important;
+    text-align: center !important;
+}
+.ant-select-selection-overflow{
+    font-size:x-large !important;
+    text-align: center !important;
+}
+.ant-select-selection-placeholder{
+    font-size: 20px
+}
+.ant-table-content{
+    border-color: black;
+}
+a{
+    color: black;
+}
+.ant-btn ant-btn-danger ant-btn-circle ant-btn-sm ant-btn-icon-only{
+    font-size: 0.5px;
+}
+/* .ant-table-cell{
+    border-color: black !important;
+}
+.ant-table-cell::before{
+    border-color: black !important;
+}
+.tablecontent{
+    border-color: black !important;
+}
+.ant-table-thead > tr > th{
+    border-color: black !important;
+}
+.ant-table-small .ant-table-thead > tr > th {
+    border-color: black !important;
+} */
+/* .ant-table-thead{
+    border-color: black !important;
+} */
+/* .ant-table-title + .ant-table-container table > thead > tr:first-child th:first-child{
+    border-color: black !important;
+} */
+/* .ant-table-tbody{
+    border-color: black !important;
+} */
+/* .ant-table-wrapper tablecontent{
+    border-color: black !important;
+} */
+/* .th{
+    border-color: black !important;
+} */

@@ -16,8 +16,8 @@ class HomePage extends React.Component {
     render() {
         // const location=GetDetails();
         return (
-
-                <div className="background">
+                
+                <div className="background" id="google_translate_element">
                 <div>
                 <MyNavbar />
                 </div>
