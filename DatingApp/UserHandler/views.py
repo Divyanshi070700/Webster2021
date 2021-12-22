@@ -27,13 +27,13 @@ def get_latlng_bounderies(lat, lng, distance):
 class DetailView(APIView):
     serializer_class = DetailSerializer
     permission_classes = [IsAuthenticated]
-    parser_classes= [MultiPartParser, FormParser]
+    parser_classes= [MultiPartParser, FormParser,JSONParser]
     def get(self,request,*args,**kwargs):
         # serializer = UserSerializer(request.user)
         # return Response(serializer.data)
         num=request.user.pk
         today = date.today().year
-        detail = [ {"firstName": detail.firstName,"lastName": detail.lastName,"Occupation":detail.occupation,"Bio":detail.bio, "Age":today-detail.dob.year,"lat":detail.latitude,"lng":detail.longitude}
+        detail = [ {"pic":detail.profileImg.url,"firstName": detail.firstName,"lastName": detail.lastName,"Occupation":detail.occupation,"Bio":detail.bio, "Age":today-detail.dob.year}
         for detail in Details.objects.filter(owner=num)]
         return Response(detail)
     def post(self, request,*args,**kwargs):

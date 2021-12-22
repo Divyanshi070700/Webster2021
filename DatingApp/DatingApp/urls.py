@@ -17,7 +17,8 @@ urlpatterns = [
     url('details/user/',DetailView.as_view(),name="hello"),
     url('setPref/', SetPrefView.as_view(),name="Pref"),
     url('getSwipe/',GetSwipe.as_view(),name="swipe"),
-    url('sendSwipe/', SwipeView.as_view(), name="SwipeView")
+    url('sendSwipe/', SwipeView.as_view(), name="SwipeView"),
+    url('getFeed/',NewsPost.as_view(),name='news')
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

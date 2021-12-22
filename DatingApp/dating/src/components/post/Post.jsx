@@ -1,12 +1,14 @@
 import "./post.css";
 import { MoreVert } from "@material-ui/icons";
-import { Users } from "../../dummyData";
+//import { Users } from "../../dummyData";
 import { useState } from "react";
 import Heart from "react-animated-heart";
 import { FaRegComment } from "react-icons/fa";
-
+import axios from "axios";
 // import { CommentSection } from 'react-comments';
 // import Comments from "../Comments";
+
+
 
 export default function Post({ post }) {
   const [like, setLike] = useState(post.like)
@@ -16,6 +18,8 @@ export default function Post({ post }) {
     setLike(isLiked ? like - 1 : like + 1)
     setIsLiked(!isLiked)
   }
+  const[Users,setUsers]=useState([])
+  
   // const [comment, setComment] = useState(data)
   // const userId = "01a"
   // const avatarUrl = "https://ui-avatars.com/api/name=Riya&background=random"
@@ -24,6 +28,7 @@ export default function Post({ post }) {
   // const signupUrl = "/signup"
   // let count = 0
   // comment.map(i => {count+=1; i.replies && i.replies.map(i=> count+=1)} )
+ 
   return (
     <div className="post">
       <div className="postWrapper">
@@ -31,11 +36,13 @@ export default function Post({ post }) {
           <div className="postTopLeft">
             <img
               className="postProfileImg"
-              src={Users.filter((u) => u.id === post?.userId)[0].profilePicture}
+              //src={Users.filter((u) => u.id === post?.userId)[0].profilePicture}
+              src={post.ownerpic}
               alt=""
             />
             <span className="postUsername">
-              {Users.filter((u) => u.id === post?.userId)[0].username}
+              {/* {Users.filter((u) => u.id === post?.userId)[0].username} */}
+              {post.fullName}
             </span>
             <span className="postDate">{post.date}</span>
           </div>
@@ -75,4 +82,5 @@ export default function Post({ post }) {
       </div>
     </div>
   );
+            
 }
