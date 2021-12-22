@@ -7,6 +7,8 @@ import Faq from './components/faq';
 // import Deck from "./components/Deck";
 import Swipe from "./components/Swipe";
 import Contactus from "./components/Contactus";
+import Location from "./components/Location";
+import Demo1 from "./components/Demo1";
 // import Card from "./components/Card";
 import React, { Component } from "react";
 import { BrowserRouter, Route, Switch, Link } from "react-router-dom";
@@ -21,6 +23,7 @@ import FetchDetails from "./components/FetchDetails";
 import Calender from "./components/Calender";
 import Preference from "./components/preference";
 import Activity from "./pages/Activity/Activity";
+// import { Maps } from "./components/Maps";
 class App extends React.Component {
 
 	componentDidMount() {
@@ -51,6 +54,9 @@ class App extends React.Component {
 						{/* <Route path="/Activity" component={Activity} />  */}
 						<Route exact path="/activity"><Activity /></Route>
 						<Route exact path="/calender"><Calender /></Route>
+						{/* <Route exact path="/map"><Maps /></Route> */}
+						<Route exact path="/location"><Location /></Route>
+						<Route exact path="/demo1"><Demo1 /></Route>
                         <Route path="/setPref" component={Preference}/>
 					</Switch>
 				</BrowserRouter>

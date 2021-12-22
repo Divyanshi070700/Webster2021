@@ -106,7 +106,7 @@ class FetchDetails extends React.Component {
     </>
   )}
   return(
-    <>
+    < div id="google_translate_element">
      
         <MyNavbar/>
       
@@ -207,7 +207,7 @@ class FetchDetails extends React.Component {
         
       </Form>
       
-    </>
+    </div>
   );
 };
       
