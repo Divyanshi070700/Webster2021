@@ -5,6 +5,8 @@ import Icon from '@ant-design/icons';
 // import { appointments } from '../appointments';
 import "../styles/Calender.css";
 import MyNavbar from "./Navbar";
+import { CheckCircleOutlined,InfoOutlined,CancelOutlined } from "@material-ui/icons";
+import axios from "axios";
 
 const Option = Select.Option;
 const RadioGroup = Radio.Group;
@@ -13,6 +15,7 @@ class Schedule extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      totalAll:[],
       allDates: [],
       weekdays: [],
       weekends: [],
@@ -20,8 +23,52 @@ class Schedule extends React.Component {
       daySearch: [],
       dayType: '0',
       num: '',
-      daysOfTheWeek: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+      daysOfTheWeek: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+      isLoading:true
     };
+  }
+  componentDidMount(){
+        
+    let myPlans=[];
+    axios({
+      method: "get",
+      url: "http://127.0.0.1:8000/mySchedule/",
+      
+      headers: { "Content-Type": "application/json" ,
+      Authorization: "Token "+localStorage.getItem('token')},
+    })   
+    .then(res => {
+      //let tempDate = new Date(new Date().getTime() + (0 * 24 * 60 * 60 * 1000));
+      
+      
+         for(let i=0;i<res.data.length;i++)
+         {
+           console.log(i);
+           myPlans.push({
+            completed: res.data[i].finished,
+            id: i+1,
+            date: res.data[i].date,
+            createdAt: res.data[i].time,
+            dateTime:res.data[i].dateTime,
+            //day: res.data[i].date.getDay(),
+            day:res.data[i].day,
+            dayOfWeek: this.state.daysOfTheWeek[res.data[i].day],
+            //dayOfWeek: this.state.daysOfTheWeek[res.data[i].dateTime.getDay()],
+            Partner: res.data[i].sentTo
+            
+           });
+           console.log(res.data[i].day);
+         }
+         //console.log("hey");
+         this.setState({ totalAll: myPlans });
+       if(myPlans.length == res.data.length) { 
+         console.log(myPlans[0].dayOfWeek);
+        
+         this.setState({isLoading: false});
+        //setUsers(users)
+       }
+      }
+       )
   }
   onDayTypeChange = (e) => {
     this.setState({
@@ -101,16 +148,37 @@ class Schedule extends React.Component {
     let allDates = [];
     let weekdays = [];
     let weekends = [];
-    for (var i = 0; i < num; i++) {
-      let thisTask = {}
-      let tempDate = new Date(new Date().getTime() + (i * 24 * 60 * 60 * 1000));
-      thisTask['completed'] = false;
-      thisTask['id'] = i
-      thisTask['day'] = tempDate.getDay();
-      thisTask['dayOfWeek'] = this.state.daysOfTheWeek[tempDate.getDay()];
-      thisTask['date'] = this.formatDate(tempDate)
-      allDates.push(thisTask)
-      thisTask.day > 5 || thisTask.day === 0 ? weekends.push(thisTask) : weekdays.push(thisTask);
+    let total=this.state.totalAll
+    for (var i = 0; i < total.length; i++) {
+      let thisTask=total[i]
+      let tempDate = new Date(new Date().getTime() + (num * 24 * 60 * 60 * 1000));
+      //console.log(thisTask);
+      console.log(tempDate)
+      const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
+const firstDate = tempDate.getDate();
+console.log(firstDate)
+let sdate=new Date(thisTask.dateTime)
+const secondDate = sdate.getDate();
+console.log(secondDate)
+
+const diffDays = firstDate-secondDate;
+console.log(diffDays+" "+num)
+      if(diffDays <= num){
+        console.log("found 1");
+        allDates.push(thisTask)
+        thisTask.day > 5 || thisTask.day === 0 ? weekends.push(thisTask) : weekdays.push(thisTask);
+      }
+
+      // let thisTask = {}
+      // let tempDate = new Date(new Date().getTime() + (i * 24 * 60 * 60 * 1000));
+      // thisTask['completed'] = false;
+      // thisTask['id'] = i
+      // thisTask['day'] = tempDate.getDay();
+      // thisTask['dayOfWeek'] = this.state.daysOfTheWeek[tempDate.getDay()];
+      // thisTask['date'] = this.formatDate(tempDate)
+      // allDates.push(thisTask)
+      //   thisTask.day > 5 || thisTask.day === 0 ? weekends.push(thisTask) : weekdays.push(thisTask);
+
     }
     this.setState({
       allDates,
@@ -122,7 +190,7 @@ class Schedule extends React.Component {
     let dd = String(x.getDate())
     let mm = String(x.getMonth() + 1) //January is 0!
     let yyyy = x.getFullYear();
-    let date = mm + '/' + dd + '/' + yyyy;
+    let date = dd + '/' + mm + '/' + yyyy;
     return date
   };
 
@@ -158,19 +226,19 @@ class Schedule extends React.Component {
         dataIndex: "date",
         key: "date",
         render: (text) => {
-          return <a href="javascript:">{text}</a>
+          return (<a href="javascript:">{text}</a>)
         }
       }, {
         title: "Day of Week",
         dataIndex: "dayOfWeek",
         key: "dayOfWeek",
-        render: text => <a href="javascript:">{text}</a>
+        render: (text) =>{return (<a href="javascript:">{text}</a>)}
       }, {
 
         title: "Partner",
         dataIndex: "Partner",
         key: "Partner",
-        // render: text => <a href="javascript:">{text}</a>
+         render: (text) => {return(<a href="javascript:">{text}</a>)}
 
       },
 
@@ -185,36 +253,37 @@ class Schedule extends React.Component {
       },
 
       {
-        title: "Created At",
+        title: "Time",
         dataIndex: "createdAt",
         key: "createdAt"
       },
 
-      {
-        title: "Updated At",
-        dataIndex: "updatedAt",
-        key: "updatedAt"
-      },
+      // {
+      //   title: "Updated At",
+      //   dataIndex: "updatedAt",
+      //   key: "updatedAt"
+      // },
 
       {
-        title: "Action",
+        title: "Cancel",
         key: "action",
         render: record => (
           <div>
-            <Popconfirm title="Are you sure you want to delete this task?"
+            <Popconfirm title="Are you sure you want to cancel this date?"
               onConfirm={() => { this.onDelete(record) }} okText="Yes" cancelText="No"
             >
-              < Button type="danger"
+              <CancelOutlined style={{color:"red"}} />
+              {/* < Button type="danger"
                 shape="circle"
                 icon="delete"
-                size='small'
-                style={{ marginRight: 5 }} />
+                size='large'
+                style={{ marginRight: 5 }} /> */}
             </Popconfirm>
-            < Button type="primary" shape="circle"
+            {/* < Button type="primary" shape="circle"
               icon="edit"
               size='small'
               style={{ marginRight: 5 }} onClick={() => { this.onEdit(record) }}
-            />
+            /> */}
           </div >
         )
       },
@@ -222,19 +291,24 @@ class Schedule extends React.Component {
 
         title: "Completed",
         key: "completed",
-        render: record => record.completed
-          ? <Popconfirm title="Mark Incomplete?" onConfirm={() => { this.changeTodo(record) }} okText="Yes" cancelText="No">
-            <Icon type="check-circle" style={{ color: '#52c41a' }} />
+        render: record => ( record.completed===true ?
+          
+           <Popconfirm title="?" onConfirm={() => { this.changeTodo(record) }} okText="Yes" cancelText="No">
+            <CheckCircleOutlined style={{color:"green"}} />
           </Popconfirm>
-          : <Popconfirm title="Mark Complete?" onConfirm={() => { this.changeTodo(record) }} okText="Yes" cancelText="No">
-            <Icon type="check-circle" style={{ color: '#D3D3D3' }} />
+          :
+           <Popconfirm title="Date Complete?" onConfirm={() => { this.changeTodo(record) }} okText="Yes" cancelText="No">
+            {/* <Icon type="check-circle" style={{ color: '#D3D3D3' }} /> */}
+            <CheckCircleOutlined style={{color:"red"}} />
           </Popconfirm>
-
+          
+        
+        )
       }
     ];
-
+    if(!this.state.isLoading){
     return (
-
+     
       <div>
         <MyNavbar />
         <Card>
@@ -244,7 +318,7 @@ class Schedule extends React.Component {
             prefix={<Icon type="calendar" style={{ color: 'rgba(0,0,0,.25)' }} />}
             suffix={
               <Tooltip title="Number of days includes today and days after.">
-                <Icon type="info-circle" style={{ color: 'rgba(0,0,0,.45)' }} />
+                <InfoOutlined  style={{ color: 'rgba(0,0,0,.45)' }} />
               </Tooltip>
             }
             placeholder="Enter Number of Days" />
@@ -290,6 +364,11 @@ class Schedule extends React.Component {
         </Card>
       </div>
     );
+        }
+        else
+        return(
+          <h3>Loading...</h3>
+        );
   };
 
 }

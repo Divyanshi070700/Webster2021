@@ -131,3 +131,4 @@ class SetPrefView(APIView):
         else:
             return Response("Already exists!")
              
+

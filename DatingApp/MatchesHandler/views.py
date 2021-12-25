@@ -58,9 +58,13 @@ class NewsPost(APIView):
     
     def get(self,request,*args,**kwargs):
         num=request.user.pk
+        permitted2=Matches.objects.filter(user1=num).values('user2')
+        permitted3=Matches.objects.filter(user2=num).values('user1')
+        fo=User.objects.filter(Q(pk=num) | Q(pk__in=permitted2.values('user2')) | Q(pk__in=permitted3.values('user1')))
         
+        fobjs=NewsFeed.objects.filter(Q(owner__in=fo))
         detail = [ {"photo": detail.img.url, "date": naturaltime(detail.createdAt) , "userId": detail.owner.pk, "desc": detail.caption,"opic":(Details.objects.filter(owner=detail.owner.pk)[0]).profileImg.url,"fname":(Details.objects.filter(owner=detail.owner.pk)[0]).firstName+" "+(Details.objects.filter(owner=detail.owner.pk)[0]).lastName }
-        for detail in NewsFeed.objects.all()]
+        for detail in fobjs.all()]
         return Response(detail)
     def post(self, request,*args,**kwargs):
         num=request.user.pk
@@ -76,3 +80,15 @@ class NewsPost(APIView):
 
 
 
+class ScheduleView(APIView):
+    serializer_class=InviteSerializer
+    parser_classes= [MultiPartParser,FormParser,JSONParser]
+    permission_classes = [IsAuthenticated]
+    def get(self,request,*args,**kwargs):
+        num=request.user.pk
+        print(datetime.today())
+        
+        det = [ {"finished": det.finished,"date":det.date ,"time":det.time,"sentTo":"katrina", "dateTime":det.dateTime,"day":(det.dateTime).weekday()}
+        for det in Invite.objects.all()]
+        
+        return Response(det)
