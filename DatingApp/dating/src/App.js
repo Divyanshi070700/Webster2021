@@ -22,7 +22,11 @@ import "antd/dist/antd.css";
 import FetchDetails from "./components/FetchDetails";
 import Calender from "./components/Calender";
 import Preference from "./components/preference";
+import Matchfeed from "./components/MatchFeed";
 import Activity from "./pages/Activity/Activity";
+import MyNavbar from "./components/Navbar";
+import NewChat from "./components/NewChat";
+
 // import { Maps } from "./components/Maps";
 class App extends React.Component {
 
@@ -37,13 +41,11 @@ class App extends React.Component {
 	return (
 	  <>
 	  <BrowserRouter>
+	  {/* <MyNavbar/> */}
 		<Switch>
 			<Route exact path="/">
-				<HomePage {...this.props}>
-					
+				<HomePage {...this.props}>					
 					</HomePage>
-				
-
 				</Route>
 			            <Route path="/fillDetails" component={FetchDetails}/>
                         <Route path="/dashboard" component={Dashboard} />
@@ -51,6 +53,8 @@ class App extends React.Component {
 						<Route path="/Swipe" component={Swipe} />
 						<Route path="/faq" component={Faq} />
 						<Route path="/Contactus" component={Contactus} />
+						{/* <Route path="/matches" component={Matchfeed} /> */}
+						<Route path="/newchat" component={NewChat} />
 						{/* <Route path="/Activity" component={Activity} />  */}
 						<Route exact path="/activity"><Activity /></Route>
 						<Route exact path="/calender"><Calender /></Route>
@@ -58,6 +62,7 @@ class App extends React.Component {
 						<Route exact path="/location"><Location /></Route>
 						<Route exact path="/demo1"><Demo1 /></Route>
                         <Route path="/setPref" component={Preference}/>
+
 					</Switch>
 				</BrowserRouter>
 				{/* <Footer/> */}
