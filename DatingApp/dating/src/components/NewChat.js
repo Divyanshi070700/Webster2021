@@ -1,81 +1,202 @@
-import React, { Component } from "react";
-import { render } from "react-dom";
+import React, { Component } from 'react';
+import { w3cwebsocket as W3CWebSocket } from "websocket";
 
+import Button from '@material-ui/core/Button';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import TextField from '@material-ui/core/TextField';
+import Link from '@material-ui/core/Link';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+import Container from '@material-ui/core/Container';
+import Card from '@material-ui/core/Card';
+import CardHeader from '@material-ui/core/CardHeader';
+import Paper from '@material-ui/core/Paper';
+import Avatar from '@material-ui/core/Avatar';
+
+import { withStyles } from "@material-ui/core/styles";
+import MyNavbar from './Navbar';
+
+const useStyles = theme => ({
+  paper: {
+    marginTop: theme.spacing(8),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.secondary.main,
+  },
+  form: {
+    width: '100%', // Fix IE 11 issue.
+    marginTop: theme.spacing(1),
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+  },
+  root: {
+    boxShadow: 'none',
+  }
+});
 
 class NewChat extends Component {
-    constructor(props) {
-	super(props);
-	this.state = {
-	    messages: [],
-	};
-    }
 
-    
-    componentDidMount(){
-        const roomName = location.pathname.substr(1);
+  state = {
+    isLoggedIn: true,
+    messages: [],
+    value: '',
+    name: '',
+    room: 'vacad',
+  }
 
-        var socketPath = 'ws://'
-            + window.location.host
-            + '/ws/'
-            + roomName;
-        
-        const chatSocket = new WebSocket(
-	    socketPath
+  client = new W3CWebSocket('ws://127.0.0.1:8000/ws/chat/' + this.state.room + '/');
+
+  onButtonClicked = (e) => {
+    this.client.send(JSON.stringify({
+      type: "message",
+      message: this.state.value,
+      name: this.state.name
+    }));
+    this.state.value = ''
+    e.preventDefault();
+  }
+
+  componentDidMount() {
+    this.client.onopen = () => {
+      console.log('WebSocket Client Connected');
+    };
+    this.client.onmessage = (message) => {
+      const dataFromServer = JSON.parse(message.data);
+      console.log('got reply! ', dataFromServer.type);
+      if (dataFromServer) {
+        this.setState((state) =>
+          ({
+            messages: [...state.messages,
+            {
+              msg: dataFromServer.message,
+              name: dataFromServer.name,
+            }]
+          })
         );
-        
-        chatSocket.onmessage = (e) => {
-            var data = JSON.parse(e.data);
-            var message = {text: data.message, date: data.utc_time};
-	    message.date = moment(message.date).local().format('YYYY-MM-DD HH:mm:ss');
-	    
-            let updated_messages = [...this.state.messages];
-            updated_messages.push(message);
-            this.setState({messages: updated_messages});
-        };
+      }
+    };
+  }
 
-	chatSocket.onclose = (e) => {
-	    console.error('Chat socket closed unexpectedly');
-	};
+  render() {
+    const { classes } = this.props;
+    return (
+        <>
+        <MyNavbar/>
+      <Container component="main" maxWidth="xs">
+          
+        {this.state.isLoggedIn ?
+          <div style={{ marginTop: 50, }}>
+            Room Name: {this.state.room}
+            <Paper style={{ height: 500, maxHeight: 500, overflow: 'auto', boxShadow: 'none', }}>
+              {this.state.messages.map(message => <>
+                <Card className={classes.root}>
+                  <CardHeader
+                    avatar={
+                      <Avatar className={classes.avatar}>
+                        R
+                  </Avatar>
+                    }
+                    title={message.name}
+                    subheader={message.msg}
+                  />
+                </Card>
+              </>)}
+            </Paper>
 
-	document.querySelector('#chat-message-input').focus();
-	document.querySelector('#chat-message-input').onkeyup = (e) => {
-	    this.clickSubmitMessage
-	};
-
-	document.querySelector('#chat-message-submit').onclick = (e) => {
-            var messageInputDom = document.querySelector('#chat-message-input');
-            var message = messageInputDom.value;
-
-            chatSocket.send(JSON.stringify({
-                'message': message
-            }));
-            messageInputDom.value = '';
-	};
-    }
-
-    render() {
-	return (
-            <div>
-              
-              {this.state.messages.map(function(item, i){
-                  return <div key={i} id="message" className="card">
-
-                           <div className="cell large-4">{item.text}</div>
-                           <div className="cell large-2 text-right"><small>{item.date}</small></div>
-                         </div>
-                  ;}
-                                      )}
-                                           
-
-	    <textarea id="chat-message-input" type="text" cols="100" /><br />
-	    <input id="chat-message-submit" type="button" className="button" value="Send" />
-	    
+            <form className={classes.form} noValidate onSubmit={this.onButtonClicked}>
+              <TextField
+                id="outlined-helperText"
+                label="Make a comment"
+                defaultValue="Default Value"
+                variant="outlined"
+                value={this.state.value}
+                fullWidth
+                onChange={e => {
+                  this.setState({ value: e.target.value });
+                  this.value = this.state.value;
+                }}
+              />
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                color="primary"
+                className={classes.submit}
+              >
+                Start Chatting
+                </Button>
+            </form>
+          </div>
+          :
+          <div>
+            <CssBaseline />
+            <div className={classes.paper}>
+              <Typography component="h1" variant="h5">
+                ChattyRooms
+                </Typography>
+              <form className={classes.form} noValidate onSubmit={value => this.setState({ isLoggedIn: true })}>
+                <TextField
+                  variant="outlined"
+                  margin="normal"
+                  required
+                  fullWidth
+                  id="email"
+                  label="Chatroom Name"
+                  name="Chatroom Name"
+                  autoFocus
+                  value={this.state.room}
+                  onChange={e => {
+                    this.setState({ room: e.target.value });
+                    this.value = this.state.room;
+                  }}
+                />
+                <TextField
+                  variant="outlined"
+                  margin="normal"
+                  required
+                  fullWidth
+                  name="Username"
+                  label="Username"
+                  type="Username"
+                  id="Username"
+                  value={this.state.name}
+                  onChange={e => {
+                    this.setState({ name: e.target.value });
+                    this.value = this.state.name;
+                  }}
+                />
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  color="primary"
+                  className={classes.submit}
+                >
+                  Start Chatting
+                  </Button>
+                <Grid container>
+                  <Grid item xs>
+                    <Link href="#" variant="body2">
+                      Forgot password?
+                      </Link>
+                  </Grid>
+                  <Grid item>
+                    <Link href="#" variant="body2">
+                      {"Don't have an account? Sign Up"}
+                    </Link>
+                  </Grid>
+                </Grid>
+              </form>
             </div>
-	);
-    }
+          </div>}
+      </Container>
+      </>
+    )
+  }
 }
-
-export default NewChat;
-
-const container = document.getElementById("app");
-render(<NewChat />, container);
+export default withStyles(useStyles)(NewChat)

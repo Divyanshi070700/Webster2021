@@ -12,3 +12,13 @@ class MatchSerializer(serializers.ModelSerializer):
     class Meta:
         model= Matches
         fields = ('__all__')
+
+class PostSerializer(serializers.ModelSerializer):
+    class Meta:
+        model= NewsFeed
+        fields= ('__all__')
+
+class InviteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model= Invite
+        fields=('__all__')

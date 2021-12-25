@@ -32,12 +32,15 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'channels',
+    'chat',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
     #'knox',
     'core',
     'UserHandler',
@@ -158,3 +161,13 @@ STATICFILES_DIRS=[os.path.join(BASE_DIR, 'static')]
 MEDIA_URL ='/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 
+ASGI_APPLICATION = 'DatingApp.asgi.application'
+
+CHANNEL_LAYERS = {
+'default': {
+    'BACKEND': 'channels.layers.InMemoryChannelLayer',
+},
+'CONFIG': {
+        "hosts": [('redis',6379)],
+    },
+}
