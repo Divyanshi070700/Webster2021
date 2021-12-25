@@ -4,3 +4,4 @@ from .models import *
 admin.site.register(SwipeR)
 admin.site.register(Matches)
 admin.site.register(NewsFeed)
+admin.site.register(Invite)

@@ -18,7 +18,7 @@ export default function Post({ post }) {
     setLike(isLiked ? like - 1 : like + 1)
     setIsLiked(!isLiked)
   }
-  const[Users,setUsers]=useState([])
+  //const[Users,setUsers]=useState([])
   
   // const [comment, setComment] = useState(data)
   // const userId = "01a"

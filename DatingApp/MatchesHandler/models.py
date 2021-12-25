@@ -22,3 +22,17 @@ class NewsFeed(models.Model):
     createdAt=models.DateTimeField()
     img=models.ImageField(null=True,blank=True,upload_to=upload_to)
     caption=models.TextField(max_length=100,null=True,blank=True)
+
+class Invite(models.Model):
+    sentBy=models.ForeignKey(User,related_name='person',on_delete=models.CASCADE)
+    sentTo=models.ForeignKey(User,related_name='person2',on_delete=models.CASCADE)
+    venue=models.CharField(max_length=100)
+    date=models.DateField()
+    time=models.TimeField()
+    dateTime=models.DateTimeField(null=True,blank=True)
+    accepted=models.BooleanField()
+    finished=models.BooleanField()
+
+# class acceptInvite(models.Model):
+#     forInvite=models.ForeignKey(Invite,related_name='acceptInvite',on_delete=models.CASCADE)
+#     partner=
