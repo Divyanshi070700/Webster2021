@@ -52,6 +52,8 @@ class Swipe extends Component {
        }
        )
       
+
+       
   }
   render() {
     const { isLoading, result } = this.state;

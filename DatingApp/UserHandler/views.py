@@ -134,7 +134,7 @@ class SetPrefView(APIView):
             print(data)
         
             if (serializer.is_valid(raise_exception=True)):  
-               #serializer.save()
+               serializer.save()
                print(data)
                return Response(serializer.data)
         else:

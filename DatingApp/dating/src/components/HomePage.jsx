@@ -43,9 +43,9 @@ class HomePage extends React.Component {
 
                                 </div>
                         }
-                        {/* <div className="footerdiv">
+                        <div className="footerdiv">
                         <Footer />
-                    </div> */}
+                    </div>
 
                     </div>
                     

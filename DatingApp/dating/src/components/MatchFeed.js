@@ -5,114 +5,104 @@ import { FaBeer } from 'react-icons/fa';
 import MyNavbar from './Navbar';
 import { Link } from 'react-router-dom';
 import { Row, Col, Grid } from 'react-bootstrap';
-import "../styles/MatchFeed.css";
 
+
+import axios from 'axios';
+import { Matches } from './MatchFeed2';
 class MatchFeed extends Component {
+    
+    constructor(props) {
+        super(props);
+        this.state = { isLoading: true, MatchData: [] };
+      }
+          
+      componentDidMount(){
+            
+        let matchData=[];
+        axios({
+          method: "get",
+          url: "http://127.0.0.1:8000/sendSwipe/",
+          
+          headers: { "Content-Type": "application/json" ,
+          Authorization: "Token "+localStorage.getItem('token')},
+        })   
+        .then(res => {
+
+            for(let i=0;i<res.data.length;i++)
+            {
+                 matchData.push({
+                   
+                    id:i+1,
+                    Name:res.data[i].firstName+" "+res.data[i].lastName,
+                    Bio: res.data[i].bio,
+                    Pic: "http://127.0.0.1:8000"+res.data[i].pic
+                 })
+            }
+             
+             
+      
+             
+           if(matchData.length==res.data.length) { 
+             
+             this.setState({ MatchData: matchData });
+             this.setState({isLoading: false});
+            //setUsers(users)
+           }
+          }
+           )
+      }
   render() {
-      return (
+
+
+if(!this.state.isLoading)
+{
+    return(
         <>
         <MyNavbar/>
         <h2 style={{ marginTop:'20px'}}> Your Matches</h2>
-          <div style={{alignContent:"center", alignItems:"center", textAlign:"center", width:'80%'}}>
+           <div style={{alignContent:"center", alignItems:"center", textAlign:"center", width:'80%'}}>
             
             
-        <List style={{margin:"15px"}}>
-    
-    <List.Item className='list'>
-      <Row className='rowlist'>
-        <Col style={{ padding:'10px'}}>
-        <Image avatar src='https://react.semantic-ui.com/images/avatar/small/lindsay.png' style={{position:"left", width:"50px"}}/>
-        </Col>
-        <Col>
-        <List.Content>
-        <List.Header as='a'>Lindsay</List.Header>
-        <List.Description>
-          Last seen watching{' '}
-          <a>
-            <b>Bob's Burgers</b>
-          </a>{' '}
-          10 hours ago.
-        </List.Description>
-      </List.Content>
-        </Col>
-        <Col>
-        <Link to="/videocall">
-        <Button style={{ margin:'10px', backgroundColor:'black'}} type="primary" > Call</Button>
-        </Link>
-        <Link to="/newchat">
-        <Button style={{ margin:'10px', backgroundColor:'black'}} type="primary" > Chat</Button>
-        </Link>
-        <Link to="/newchat">
-        <Button style={{ margin:'10px', backgroundColor:'black'}} type="primary" > Invite</Button>
-        </Link>
-        </Col>
-      </Row> 
-    </List.Item>
-    
-    <List.Item className='list'>
-      <Row className='rowlist'>
-        <Col style={{ padding:'10px'}}>
-        <Image avatar src='https://react.semantic-ui.com/images/avatar/small/lindsay.png' style={{position:"left", width:"50px"}}/>
-        </Col>
-        <Col>
-        <List.Content>
-        <List.Header as='a'>Lindsay</List.Header>
-        <List.Description>
-          Last seen watching{' '}
-          <a>
-            <b>Bob's Burgers</b>
-          </a>{' '}
-          10 hours ago.
-        </List.Description>
-      </List.Content>
-        </Col>
-        <Col>
-        <Link to="/videocall">
-        <Button style={{ margin:'10px', backgroundColor:'black'}} type="primary" > Call</Button>
-        </Link>
-        <Link to="/newchat">
-        <Button style={{ margin:'10px', backgroundColor:'black'}} type="primary" > Chat</Button>
-        </Link>
-        <Link to="/newchat">
-        <Button style={{ margin:'10px', backgroundColor:'black'}} type="primary" > Invite</Button>
-        </Link>
-        </Col>
-      </Row> 
-    </List.Item>
-    <List.Item className='list'>
-      <Row className='rowlist'>
-        <Col style={{ padding:'10px'}}>
-        <Image avatar src='https://react.semantic-ui.com/images/avatar/small/lindsay.png' style={{position:"left", width:"50px"}}/>
-        </Col>
-        <Col>
-        <List.Content>
-        <List.Header as='a'>Lindsay</List.Header>
-        <List.Description>
-          Last seen watching{' '}
-          <a>
-            <b>Bob's Burgers</b>
-          </a>{' '}
-          10 hours ago.
-        </List.Description>
-      </List.Content>
-        </Col>
-        <Col>
-        <Link to="/videocall">
-        <Button style={{ margin:'10px', backgroundColor:'black'}} type="primary" > Call</Button>
-        </Link>
-        <Link to="/newchat">
-        <Button style={{ margin:'10px', backgroundColor:'black'}} type="primary" > Chat</Button>
-        </Link>
-        <Link to="/invite">
-        <Button style={{ margin:'10px', backgroundColor:'black'}} type="primary" > Invite</Button>
-        </Link>
-        </Col>
-      </Row>
-    </List.Item>
-  </List>
+        < List style={{margin:"15px"}}>
+        {this.state.MatchData.map((mat) => (
+          <Matches key={mat.id} mat={mat} />
+        ))}
+        
+        </List>
         </div>
         </>
-        );
+    );
+}
+else
+{
+    return(
+        <h3>loading...</h3>
+    );   
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     }
 }

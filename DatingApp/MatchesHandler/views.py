@@ -19,10 +19,14 @@ class SwipeView(APIView):
     parser_classes= [MultiPartParser, FormParser]
     def get(self,request,*args,**kwargs):
         num=request.user.pk
-        # today = date.today().year
-        # detail = [ {"firstName": detail.firstName,"lastName": detail.lastName,"Occupation":detail.occupation,"Bio":detail.bio, "Age":today-detail.dob.year,"lat":detail.latitude,"lng":detail.longitude}
-        # for detail in Details.objects.filter(owner=num)]
-        # return Response(detail)
+        permitted2=Matches.objects.filter(user1=num).values('user2')
+        permitted3=Matches.objects.filter(user2=num).values('user1')
+        fo=User.objects.filter(Q(pk__in=permitted2.values('user2')) | Q(pk__in=permitted3.values('user1')))
+        fobjs=Details.objects.filter(Q(owner__in=fo))
+        #today = date.today().year
+        detail = [ {"pic":detail.profileImg.url ,"firstName": detail.firstName,"lastName": detail.lastName,"Occupation":detail.occupation,"Bio":detail.bio}
+        for detail in fobjs.all()]
+        return Response(detail)
     def post(self, request,*args,**kwargs):
         data=request.data
         serializer = SwipeSerializer(data=data)
@@ -41,13 +45,13 @@ class SwipeView(APIView):
         else:
 
             print("match can be  done...")
-            #obj[0].delete()
-            # newmatch=Matches.objects.create(
-            #     user1=request.user,
-            #     user2=User.objects.filter(pk=data['swipedUser'])[0],
-            #     Mdate=(date.today())
-            # )
-            #newmatch.save()
+            obj[0].delete()
+            newmatch=Matches.objects.create(
+                user1=request.user,
+                user2=User.objects.filter(pk=data['swipedUser'])[0],
+                Mdate=(date.today())
+            )
+            newmatch.save()
             return Response("match made")
 
 
@@ -75,7 +79,7 @@ class NewsPost(APIView):
         data['owner']=num
         data['createdAt']=datetime.now()
         if (serializer.is_valid(raise_exception=True)):
-            #serializer.save()
+            serializer.save()
             #print("swiped right: "+data['swipedUser'])
             return Response(serializer.data)
 
@@ -93,3 +97,19 @@ class ScheduleView(APIView):
         for det in Invite.objects.all()]
         
         return Response(det)
+    def post(self, request,*args,**kwargs):
+        num=request.user.pk
+        data=request.data
+        serializer=InviteSerializer(data=data)
+        data._mutable=True
+        data['sentBy']=num
+        obj=User.objects.filter(username=data.name)[0]
+        data['sentTo']=obj.pk
+        data['accepted']=False
+        data['finished']=False
+        if (serializer.is_valid(raise_exception=True)):
+            serializer.save()
+            #print("swiped right: "+data['swipedUser'])
+            return Response(serializer.data)
+
+    

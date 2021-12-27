@@ -74,7 +74,7 @@ class Dashboard extends React.Component {
                     <Card.Text className="cards-style">
                       Check out the list of matches you already have in your pocket...
                     </Card.Text>
-                    <Link to="/matches">
+                    <Link to="/matchfeed">
                       <Button className="btn1" style={{ borderRadius:'50px', backgroundColor:''}} type="primary" >
                         Go Ahead😊
                       </Button>

@@ -157,6 +157,7 @@ class NewChat extends Component {
           fontFamily="Times"
                    
         />
+        <br></br>
         <label htmlFor="chatSubmit"> 
         
        <Avatar sx={{ bgcolor:"pink" }}  style={{ backgroundColor:"grey" ,position:"absolute", left:"910px", top:"670px"}} alt="Remy Sharp"  float="right"><ChatBubble/></Avatar>
