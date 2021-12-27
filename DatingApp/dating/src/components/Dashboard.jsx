@@ -33,23 +33,6 @@ class Dashboard extends React.Component {
          "Content-Type": "application/json",
          Authorization: "Token "+localStorage.getItem('token')
        }
-      //  axios.get('http://127.0.0.1:8000/details/user/')
-      //    .then(res => {
-      //       localStorage.setItem('detailsOfUser',res.data);
-      //       data=res.data
-      //       this.setState({
-      //                             firstName: data[0].firstName,
-      //                   lastName: data[0].lastName,
-      //                   occupation: data[0].Occupation,
-      //                   bio: data[0].Bio,
-      //                   age: data[0].Age,
-    
-      //                        });
-      //      console.log(res.data);
-      //      localStorage.setItem('userId',res.data.pk);
-           
-      //    })
-         
        }
 
   toggleCollapsed = () => {
@@ -91,7 +74,6 @@ class Dashboard extends React.Component {
                     <Card.Text className="cards-style">
                       Check out the list of matches you already have in your pocket...
                     </Card.Text>
-                    {/* <Button variant="primary">Go Ahead😊</Button> */}
                     <Link to="/matches">
                       <Button className="btn1" style={{ borderRadius:'50px', backgroundColor:''}} type="primary" >
                         Go Ahead😊

@@ -1,0 +1,59 @@
+.containerVid {
+	display: grid;
+	grid-template-columns: 7fr 3fr;
+}
+
+.myId {
+	margin-right: 5rem;
+	border-radius: 20px;
+	background: #ffc9f1; /* fallback for old browsers */
+	background: -webkit-linear-gradient(to right, #ffffff, #facff3); /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(
+		to right,
+		#ffffff,
+		#f8d6f1
+	); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    /* border-color: black;
+    border-width: 10px; */
+    /* border-radius: 10%; */
+    border: .5px solid rgba(0, 0, 0, 0.363);
+	padding: 2rem;
+	display: grid;
+	justify-content: center;
+	align-content: center;
+    /* height: fit-content; */
+}
+
+.call-button {
+	text-align: center;
+	margin-top: 2rem;
+}
+
+.video-container {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	justify-content: center;
+	align-content: center;
+    align-self: center;
+    align-items: center;
+	margin-top: 10rem;
+	margin-left: 10rem;
+}
+
+.caller {
+	text-align: center;
+	color: #fff;
+}
+
+/* .video{
+    border-radius: 50%;
+} */
+/* body {
+	
+	background: -webkit-linear-gradient(to right, #8e54e9, #4776e6); 
+	background: linear-gradient(
+		to right,
+		#8e54e9,
+		#4776e6
+	); 
+} */

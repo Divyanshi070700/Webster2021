@@ -46,7 +46,6 @@ const useStyles = theme => ({
   }
 });
 
-
 class NewChat extends Component {
 
   state = {
