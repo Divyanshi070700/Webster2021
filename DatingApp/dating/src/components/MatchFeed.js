@@ -38,10 +38,7 @@ class MatchFeed extends Component {
                     Pic: "http://127.0.0.1:8000"+res.data[i].pic
                  })
             }
-             
-             
-      
-             
+
            if(matchData.length==res.data.length) { 
              
              this.setState({ MatchData: matchData });
@@ -79,30 +76,6 @@ else
         <h3>loading...</h3>
     );   
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   }
 }
