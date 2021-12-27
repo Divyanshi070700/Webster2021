@@ -12,6 +12,7 @@ from django.contrib.humanize.templatetags.humanize import naturalday, naturaltim
 
 from rest_framework.parsers import JSONParser, MultiPartParser, FormParser
 from django.db.models import Q
+
 class SwipeView(APIView):
     serializer_class = SwipeSerializer
     permission_classes = [IsAuthenticated]

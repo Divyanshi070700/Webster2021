@@ -12,6 +12,15 @@ from rest_framework.permissions import IsAuthenticated
 from datetime import date
 from rest_framework.parsers import JSONParser, MultiPartParser, FormParser
 import geopy.distance
+from allauth.socialaccount.providers.facebook.views import FacebookOAuth2Adapter
+from allauth.socialaccount.providers.google.views import GoogleOAuth2Adapter
+from rest_auth.registration.views import SocialLoginView
+
+class FacebookLogin(SocialLoginView):
+    adapter_class = FacebookOAuth2Adapter
+
+class GoogleLogin(SocialLoginView):
+    adapter_class = GoogleOAuth2Adapter
 
 def get_latlng_bounderies(lat, lng, distance):
       p0=geopy.distance.distance(kilometers=distance).destination((lat,lng), bearing=0)

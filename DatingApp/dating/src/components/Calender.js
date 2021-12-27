@@ -5,7 +5,7 @@ import Icon from '@ant-design/icons';
 // import { appointments } from '../appointments';
 import "../styles/Calender.css";
 import MyNavbar from "./Navbar";
-import { CheckCircleOutlined,InfoOutlined,CancelOutlined } from "@material-ui/icons";
+import { CheckCircleOutlined,InfoOutlined,CancelOutlined,CalendarTodaySharp,SearchSharp, ScheduleTwoTone, SearchTwoTone, } from "@material-ui/icons";
 import axios from "axios";
 
 const Option = Select.Option;
@@ -315,7 +315,7 @@ console.log(diffDays+" "+num)
           <Input onChange={this.changeNum.bind(this)}
             value={this.state.num}
             style={{ width: 200 }}
-            prefix={<Icon type="calendar" style={{ color: 'rgba(0,0,0,.25)' }} />}
+            prefix={<CalendarTodaySharp/>}
             suffix={
               <Tooltip title="Number of days includes today and days after.">
                 <InfoOutlined  style={{ color: 'rgba(0,0,0,.45)' }} />
@@ -335,7 +335,8 @@ console.log(diffDays+" "+num)
           <br /><br />
 
           <div style={{ position: 'relative', width: 405, display: 'inline-block' }}>
-            <Icon type="search" style={{ position: 'absolute', zIndex: 100, fontSize: 20, top: 6, right: 5 }} />
+            <SearchTwoTone style={{ position: 'absolute', zIndex: 100, fontSize: 30, top: 6, right: 5 }}/>
+            {/* <Icon type="search" style={{ position: 'absolute', zIndex: 100, fontSize: 20, top: 6, right: 5 }} /> */}
             <Select
               mode="multiple"
               style={{ width: '405px', marginLeft: 5 }}
@@ -358,7 +359,7 @@ console.log(diffDays+" "+num)
             dataSource={this.state.daySearch.length > 0 ? filteredDatasource : datasource}
             size="small"
             pagination={false}
-            title={() => { return <h3><Icon type='schedule' /> Your Schedule </h3> }}
+            title={() => { return <h3><ScheduleTwoTone style={{ fontSize: 30 }} /> Your Schedule </h3> }}
             rowKey={record => record.id}
           />
         </Card>
