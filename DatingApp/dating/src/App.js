@@ -62,6 +62,8 @@ class App extends React.Component {
 						<Route exact path="/location"><Location /></Route>
 						<Route exact path="/demo1"><Demo1 /></Route>
                         <Route path="/setPref" component={Preference}/>
+						<Route path="/showMatches" component={Matchfeed}/>
+
 
 					</Switch>
 				</BrowserRouter>
