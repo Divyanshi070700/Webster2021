@@ -1,0 +1,19 @@
+.description
+{
+    text-align:center !important;
+}
+
+.list{
+    margin-bottom: 30px;
+    margin-left: 20%;
+    /* justify-content: center; */
+}
+
+.rowlist
+{
+    /* text-align: center; */
+    /* float: left; */
+    width: auto;
+    background-color: rgb(247, 231, 239);
+    padding-top: 15px;
+}
