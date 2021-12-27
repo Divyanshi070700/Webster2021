@@ -13,7 +13,7 @@ import "../styles/Footer.css";
 
 class Footer extends Component {
 render(){
-    const description = "According to wikipedia, the cat (Felis catus) is a domestic species of small carnivorous mammal.";
+    const description = "If you have been searching for your soulmate, no need to stress anymore, this website is designed to help you. Give it a try!";
     const title = "Soulmates";
     
     // var firstColStyle = { textAlign: 'right' }
@@ -73,7 +73,7 @@ render(){
       instagram="fluffy_cat_live"
       youtube="UCFt6TSF464J8K82xeA?"
       pinterest="fluffy_cats_collections"
-      copyright="white"
+      copyright="Soulmates"
       iconColor="white"
       backgroundColor= "rgb(0,0,0,0.5)"
       fontColor="white"
