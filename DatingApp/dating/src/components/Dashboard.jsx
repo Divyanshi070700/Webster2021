@@ -43,7 +43,7 @@ class Dashboard extends React.Component {
 
   render() {
     return (
-      <div>
+      <div id="google_translate_element">
         <div >
           <MyNavbar />
           
