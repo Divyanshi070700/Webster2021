@@ -27,6 +27,7 @@ import Activity from "./pages/Activity/Activity";
 import MyNavbar from "./components/Navbar";
 import NewChat from "./components/NewChat";
 import VideoCall from "./components/VideoCall";
+import MatchFeed from "./components/MatchFeed";
 
 // import { Maps } from "./components/Maps";
 class App extends React.Component {
@@ -62,6 +63,7 @@ class App extends React.Component {
 						{/* <Route exact path="/map"><Maps /></Route> */}
 						<Route exact path="/location"><Location /></Route>
 						<Route exact path="/demo1"><Demo1 /></Route>
+						<Route exact path="/matchfeed"><MatchFeed/></Route>
 						<Route exact path="/videocall"><VideoCall /></Route>
                         <Route path="/setPref" component={Preference}/>
 
