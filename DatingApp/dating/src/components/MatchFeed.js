@@ -104,7 +104,7 @@ else
 
 
 
-    }
+  }
 }
 export default MatchFeed;
 

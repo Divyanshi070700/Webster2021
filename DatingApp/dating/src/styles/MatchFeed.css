@@ -1,3 +1,8 @@
+.outerdiv{
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+    font-weight: bolder;
+}
+
 .description
 {
     text-align:center !important;
@@ -16,4 +21,9 @@
     width: auto;
     background-color: rgb(247, 231, 239);
     padding-top: 15px;
+}
+
+.location
+{
+    width:auto;
 }
