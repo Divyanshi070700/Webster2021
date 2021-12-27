@@ -10,6 +10,8 @@ import { connect } from "react-redux";
 import Footer from "./Footer";
 import "../styles/HomePage.css";
 import home from "../images/home3.png";
+import SocialLogin from "./SocialLogin";
+import {SearchOutlined} from "@material-ui/icons"
 
 class HomePage extends React.Component {
 
@@ -36,12 +38,14 @@ class HomePage extends React.Component {
                                     </SignUp>
                                     <Login>
                                     </Login>
+                                    <SocialLogin>
+                                        </SocialLogin>
 
                                 </div>
                         }
-                        <div className="footerdiv">
+                        {/* <div className="footerdiv">
                         <Footer />
-                    </div>
+                    </div> */}
 
                     </div>
                     

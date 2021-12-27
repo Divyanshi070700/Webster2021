@@ -76,7 +76,7 @@ class Dashboard extends React.Component {
                     </Card.Text >
                     {/* <Button variant="primary">Go Ahead💬</Button> */}
                     <Link to="/chat">
-                      <Button style={{ borderRadius:'50px'}} type="primary" >
+                      <Button className="btn1" style={{ borderRadius:'50px'}} type="primary" >
                         Go Ahead😊
                       </Button>
                     </Link>
@@ -93,7 +93,7 @@ class Dashboard extends React.Component {
                     </Card.Text>
                     {/* <Button variant="primary">Go Ahead😊</Button> */}
                     <Link to="/matches">
-                      <Button style={{ borderRadius:'50px', backgroundColor:''}} type="primary" >
+                      <Button className="btn1" style={{ borderRadius:'50px', backgroundColor:''}} type="primary" >
                         Go Ahead😊
                       </Button>
                     </Link>
@@ -110,7 +110,7 @@ class Dashboard extends React.Component {
                       Try your Luck...
                     </Card.Text>
                     <Link to="/swipe">
-                      <Button style={{ borderRadius:'50px'}} type="primary" >
+                      <Button className="btn1" style={{ borderRadius:'50px'}} type="primary" >
                         Start Here❤️
                       </Button>
                     </Link>
@@ -130,7 +130,7 @@ class Dashboard extends React.Component {
                     </Card.Text>
                     {/* <Button variant="primary">Go Ahead🗓️ </Button> */}
                     <Link to="/calender">
-                     <Button style={{ borderRadius:'50px'}} type="primary" >
+                     <Button className="btn1" style={{ borderRadius:'50px'}} type="primary" >
                         Go Ahead🗓️
                       </Button>
                     </Link>
@@ -146,7 +146,7 @@ class Dashboard extends React.Component {
                       Check all yours and your friend's posts and updates here..
                     </Card.Text>
                     <Link to="/activity">
-                      <Button style={{ borderRadius:'50px'}} type="primary" >
+                      <Button className="btn1" style={{ borderRadius:'50px'}} type="primary" >
                         Check here📰 
 
                       </Button>
