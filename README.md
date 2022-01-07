@@ -1,5 +1,5 @@
 # We Don't Believe in Soulmates
-A interactive web app that is the clone of an application already available with the name "MICROSOFT TEAMS".
+An interactive web app that is the clone of an application already available with the name "TINDER".
 
 ## Screenshots:
   ![MicrosoftTeams-image (4)](https://user-images.githubusercontent.com/59930751/147494635-a5a5d6cc-ea75-4d99-a322-34ec7beae440.png)
