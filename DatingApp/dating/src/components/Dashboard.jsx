@@ -43,7 +43,7 @@ class Dashboard extends React.Component {
 
   render() {
     return (
-      <div>
+      <div id="google_translate_element">
         <div >
           <MyNavbar />
           
@@ -58,7 +58,7 @@ class Dashboard extends React.Component {
                       Just making matches isn't enough...Try to make your connections strong..
                     </Card.Text >
                     {/* <Button variant="primary">Go Ahead💬</Button> */}
-                    <Link to="/chat">
+                    <Link to="/newchat">
                       <Button className="btn1" style={{ borderRadius:'50px'}} type="primary" >
                         Go Ahead😊
                       </Button>

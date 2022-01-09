@@ -64,10 +64,10 @@ export default function Post({ post }) {
           </div>
           <div className="postBottomLeft">
             {/* <img className="likeIcon" src="assets/like.png" onClick={likeHandler} alt="" /> */}
-            <img className="likeIcon" src="assets/heart.png" onClick={likeHandler} alt="" />
+            {/* <img className="likeIcon" src="assets/heart.png" onClick={likeHandler} alt="" />
 
           <span className="postLikeCounter">{like} people like it</span>
-          
+           */}
           </div>
 
 
@@ -76,7 +76,7 @@ export default function Post({ post }) {
             {/* <CommentSection currentUser={userId && { userId: userId, avatarUrl: avatarUrl, name: name }} commentsArray={comment}
               setComment={setComment} signinUrl={signinUrl} signupUrl={signupUrl}/> */}
               {/* <Comments /> */}
-             <span className="postCommentText">{post.comment} comments</span>
+             {/* <span className="postCommentText">{post.comment} comments</span> */}
           </div>
         </div>
       </div>

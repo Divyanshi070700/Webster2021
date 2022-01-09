@@ -39,7 +39,7 @@ class SwipeView(APIView):
           Q(swipedUser=num))
         if (len(obj)==0):
             if (serializer.is_valid(raise_exception=True)):
-               #serializer.save()
+               serializer.save()
                print("swiped right: "+data['swipedUser'])
                return Response(serializer.data)
         else:

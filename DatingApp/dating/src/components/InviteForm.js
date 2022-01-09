@@ -28,9 +28,9 @@ const CollectValues = ({visible, onDone, onCancel}) => {
       formData.append("sentTo",values.name);
       formData.append("venue",values.place);
      
-      formData.append("date",values.DateTime._d.toLocaleDateString());
-      formData.append("time",values.DateTime._d.toTimeString());
-      formData.append("DateTime",values.DateTime._d);
+      formData.append("date",(values.DateTime)._d.toLocaleDateString());
+      formData.append("time",(values.DateTime)._d.toTimeString());
+      formData.append("DateTime",(values.DateTime)._d);
       
       
 
@@ -162,9 +162,9 @@ const CollectionsPage = () => {
         formData.append("sentTo",values.name);
         formData.append("venue",values.place);
        
-        formData.append("date",values.DateTime._d.toLocaleDateString());
-        formData.append("time",values.DateTime._d.toTimeString());
-        formData.append("DateTime",values.DateTime._d);
+        formData.append("date",(values.DateTime)._d.toLocaleDateString());
+        formData.append("time",(values.DateTime)._d.toTimeString());
+        formData.append("DateTime",(values.DateTime)._d);
         
   
         axios({
