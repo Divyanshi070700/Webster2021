@@ -32,6 +32,7 @@
     "react-animated-heart": "0.0.7-alpha.1",
     "react-bootstrap": "^2.0.0-rc.0",
     "react-bootstrap-datetimepicker": "0.0.22",
+    "react-chatbox-component": "0.0.5",
     "react-comments": "0.0.0",
     "react-comments-section": "^1.0.7",
     "react-copy-to-clipboard": "^5.0.4",

@@ -91,11 +91,14 @@ class ScheduleView(APIView):
     permission_classes = [IsAuthenticated]
     def get(self,request,*args,**kwargs):
         num=request.user.pk
+        myName=User.objects.filter(pk=num)[0].username
+        fo=Invite.objects.filter(Q(sentTo=myName)|Q(sentBy=request.user))
+        fobjs=fo.filter(dateTime__gte=datetime.today(),accepted=True)
         print(datetime.today())
         
         det = [ {"finished": det.finished,"date":det.date ,"time":det.time,"sentTo":"katrina", "dateTime":det.dateTime,"day":(det.dateTime).weekday()}
-        for det in Invite.objects.all()]
-        
+        for det in fo.all()]
+        print(len(fobjs))
         return Response(det)
     def post(self, request,*args,**kwargs):
         num=request.user.pk
@@ -103,13 +106,16 @@ class ScheduleView(APIView):
         serializer=InviteSerializer(data=data)
         data._mutable=True
         data['sentBy']=num
-        obj=User.objects.filter(username=data.name)[0]
-        data['sentTo']=obj.pk
+        print(data)
+        objs=User.objects.filter(username=data['sentTo'])
+        #data['sentTo']=obj.pk
         data['accepted']=False
         data['finished']=False
+        if(len(objs)==0):
+            resp="No such username exists"
         if (serializer.is_valid(raise_exception=True)):
             serializer.save()
-            #print("swiped right: "+data['swipedUser'])
-            return Response(serializer.data)
+            
+            return Response(resp)
 
     

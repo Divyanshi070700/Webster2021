@@ -25,7 +25,8 @@ class NewsFeed(models.Model):
 
 class Invite(models.Model):
     sentBy=models.ForeignKey(User,related_name='person',on_delete=models.CASCADE)
-    sentTo=models.ForeignKey(User,related_name='person2',on_delete=models.CASCADE)
+    #sentTo=models.ForeignKey(User,related_name='person2',on_delete=models.CASCADE)
+    sentTo=models.CharField(max_length=100)
     venue=models.CharField(max_length=100)
     date=models.DateField()
     time=models.TimeField()

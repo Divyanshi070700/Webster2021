@@ -1,4 +1,4 @@
-import { Form, Input, Button, Checkbox, Modal,DatePicker,Space } from 'antd';
+import { Form, Input, Button, Checkbox, Modal,DatePicker,Space,TimePicker, message } from 'antd';
 import React from 'react';
 import { connect } from "react-redux";
 
@@ -135,16 +135,28 @@ const CollectValues = ({visible, onDone, onCancel}) => {
       </Form.Item>
 
       <Form.Item
-        label="DateTime"
-        name="DateTime"
+        label="date"
+        name="date"
+
        
       >
-          <Space direction="vertical" size={12}>
+        <DatePicker  showTime onChange={onChange} onOk={onOk}/>
+          {/* <Space direction="vertical" size={12}>
     <DatePicker showTime onChange={onChange} onOk={onOk} />
     
-  </Space>
+  </Space> */}
         
       </Form.Item>
+      
+      {/* <Form.Item
+        label="time"
+        name="time"
+
+       
+      >
+      <TimePicker  style={{ width: 140 }} />
+      </Form.Item> */}
+      
 
       
     </Form>
@@ -162,9 +174,13 @@ const CollectionsPage = () => {
         formData.append("sentTo",values.name);
         formData.append("venue",values.place);
        
-        formData.append("date",(values.DateTime)._d.toLocaleDateString());
-        formData.append("time",(values.DateTime)._d.toTimeString());
-        formData.append("DateTime",(values.DateTime)._d);
+        //formData.append("date",((values.DateTime)._d.toLocaleDateString()));
+        //const strdate=((values.DateTime)._d.getDate())
+        //formData.append("date",strdate);
+        formData.append("date",(values.date).format("YYYY-MM-DD"));
+        formData.append("time",(values.date).format('HH:mm:ss'));
+      
+        formData.append("dateTime",(values.date).format("YYYY-MM-DD HH:mm:ss"));
         
   
         axios({
@@ -176,13 +192,14 @@ const CollectionsPage = () => {
         })
           .then(function (response) {
             //handle success
-            console.log(response);
+            console.log("success!"+response);
+            alert("Sorry"+response.data);
           })
           .catch(function (response) {
             //handle error
             console.log(response);
           });
-        console.log(formData);
+        console.log("heyy"+formData.get('date'));
         // this.props.onSend(
           
         //   values.occupation,

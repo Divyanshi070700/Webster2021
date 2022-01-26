@@ -62,7 +62,7 @@ class Schedule extends React.Component {
          //console.log("hey");
          this.setState({ totalAll: myPlans });
        if(myPlans.length == res.data.length) { 
-         console.log(myPlans[0].dayOfWeek);
+         //console.log(myPlans[0].dayOfWeek);
         
          this.setState({isLoading: false});
         //setUsers(users)
